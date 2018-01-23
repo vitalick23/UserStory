@@ -75,6 +75,7 @@ namespace UserStore.Controllers
         {
             if (ModelState.IsValid)
             {
+                if(model == null) return View(model);
                 ApplicationUser user = new ApplicationUser
                 {
                     Email = model.Email,

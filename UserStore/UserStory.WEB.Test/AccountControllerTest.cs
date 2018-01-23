@@ -22,7 +22,7 @@ namespace UserStory.WEB.Test
             controller = new AccountController(fakeUserService);
         }
 
-        #region MyRegion
+        #region RegisterTest
 
         [TestMethod]
         public void TestRegisterViewResultNotNull()
@@ -32,30 +32,56 @@ namespace UserStory.WEB.Test
             Assert.IsNotNull(result);
         }
 
-        public void TestRegisterPostModelError()
+        [TestMethod]
+        public async Task TestRegisterPostModelError()
         {
             RegisterModel model = new RegisterModel();
-            controller.ModelState.AddModelError("Name", "Error");
+            controller.ModelState.AddModelError("Email", "Error");
 
-            var result = controller.Register(model) as ViewResult;
+            var result = await controller.Register(model) as ViewResult;
 
             Assert.IsNotNull(result);
             Assert.AreEqual(model, result.Model);
         }
 
         [TestMethod]
-        public void TestRegisterPostModelSuccess()
+        public async Task TestRegisterPostSuccess()
         {
             RegisterModel model = new RegisterModel();
             fakeUserService.SetFlagCreate(true);
 
-            var result = controller.Register(model) as RedirectToRouteResult;
+            var result = await controller.Register(model) as ViewResult;
 
-            Assert.AreEqual("Index", result.RouteValues["action"]);
+           Assert.AreEqual("SuccessRegister", result.ViewName);
+        }
+
+        [TestMethod]
+        public async Task TestRegisterNullModel()
+        {
+           
+            var result = await controller.Register(null) as ViewResult;
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public async Task TestRegisterErrorCreate()
+        {
+            RegisterModel model = new RegisterModel();
+            fakeUserService.SetFlagCreate(true);
+
+            var result = await controller.Register(null) as ViewResult;
+
+            Assert.IsNotNull(result);
         }
 
         #endregion
 
+        #region LoginTest
+
+
+
+        #endregion
     }
 
     public class FakeUserService : IUserService
@@ -78,9 +104,10 @@ namespace UserStory.WEB.Test
             throw new NotImplementedException();
         }
 
-        public Task Create(ApplicationUser userDto)
+        public  Task Create(ApplicationUser userDto)
         {
-            throw new NotImplementedException();
+            if (!flagCreate) throw new NotImplementedException();
+            return Task.CompletedTask;
         }
 
         public void Dispose()
