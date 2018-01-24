@@ -26,9 +26,10 @@ namespace UserStore.BLL.Services
         {
             if (item != null)
             {
-               // item.User = await userManager.FindAsync(item.UserId);
+                item.TimePublicate = DateTime.Now;
                 storyManager.Create(item);
                 await unitOfWork.SaveAsync();
+                return IdentityResult.Success;
             }
 
             return await Task.FromResult(IdentityResult.Failed("Null Story"));

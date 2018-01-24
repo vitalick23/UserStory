@@ -1,5 +1,10 @@
-﻿@{
+﻿@model List<UserStore.BLL.Entities.Story>
+@{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@User.Identity.Name</h2>
+@foreach (var s in Model)
+{
+    @Html.Partial("StoriesPartial", s);
+}

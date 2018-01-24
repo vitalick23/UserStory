@@ -1,0 +1,60 @@
+﻿@model UserStore.Models.StoryAndCommentModel
+
+@{
+    ViewBag.Title = "Stories";
+}
+
+<h2>Stories</h2>
+
+<div>
+    <h4>Story</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Story.User.UserName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Story.User.UserName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Story.Theme)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Story.Theme)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Story.Stories)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Story.Stories)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Story.TimePublicate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Story.TimePublicate)
+        </dd>
+
+    </dl>
+</div>
+@using (Ajax.BeginForm("CommentPartial", new AjaxOptions { UpdateTargetId = "results" }))
+{
+    @Html.Hidden("idStory",@Model.Story.Id)
+    <input type="text" name="text" />
+    <input type="submit" value="add" />
+}
+<div id="results">
+    @Html.Partial("CommentPartial",Model.CommentList);
+</div>
+
+
+
+@Scripts.Render("~/scripts/jquery-1.10.2.min.js")
+@Scripts.Render("~/scripts/jquery.unobtrusive-ajax.min.js")

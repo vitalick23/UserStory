@@ -9,7 +9,7 @@ namespace UserStore.BLL.Interfaces
 {
     public interface ICommentManager
     {
-        Task CreateComment(Comment item);
+        void CreateComment(Comment item);
 
         List<Comment> GetCommentByIdStory(int StoryId);
     }

@@ -18,7 +18,7 @@ namespace UserStore.BLL.Services
             Database = uow;
         }
 
-        public async Task Create(User user,string password)
+        public async Task<IdentityResult> Create(User user,string password)
         {
             if (user != null)
             {
@@ -28,8 +28,10 @@ namespace UserStore.BLL.Services
                     userFound = new User{Email = user.Email,UserName = user.Email};
                     await userManager.CreateAsync(userFound, password);
                     await Database.SaveAsync();
+                    return IdentityResult.Success;
                 }
             }
+            return IdentityResult.Failed("Null user");
         }
 
         public async Task<ClaimsIdentity> Authenticate(User userDto)

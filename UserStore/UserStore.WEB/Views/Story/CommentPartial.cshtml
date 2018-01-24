@@ -1,0 +1,13 @@
+﻿@model IEnumerable<UserStore.BLL.Entities.Comment>
+ 
+
+    <h3>Comment</h3>
+    <ul>
+        @foreach (var item in Model)
+        { 
+            <h4>@item.User.UserName</h4>
+            <li>@item.Text</li>
+            <li>@item.TimePublicate</li>
+        }
+    </ul>
+

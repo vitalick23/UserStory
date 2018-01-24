@@ -11,17 +11,14 @@ namespace UserStore.BLL.Services
 {
     public class CommentService : ICommentService
     {
-        private IUnitOfWork database { get; set; }
-        private IStoryManager storyManager;
-        private IUserManager userManager;
-        private ICommentService commentService;
+        private IUnitOfWork unitOfWork { get; set; }
+        
+        private ICommentManager commentService;
 
-        public CommentService(IUnitOfWork uow,ICommentService commentService ,IStoryManager storiesManager, IUserManager userManager)
+        public CommentService(IUnitOfWork uow,ICommentManager commentService)
         {
-            this.storyManager = storiesManager;
-            this.userManager = userManager;
             this.commentService = commentService;
-            database = uow;
+            unitOfWork = uow;
 
         }
 
@@ -29,10 +26,9 @@ namespace UserStore.BLL.Services
         {
             if (item != null)
             {
-                item.Story = storyManager.GetStories(item.Id);
-                item.User = await userManager.FindAsync(item.UserId);
                 commentService.CreateComment(item);
-                
+                await unitOfWork.SaveAsync();
+
             } 
         }
 

@@ -20,7 +20,6 @@ namespace UserStore.DAL.Identity
         public void Create(Story item)
         {
             Database.Stories.Add(item);
-            //Database.SaveChanges();
         }
 
         public List<Story> GetStories()

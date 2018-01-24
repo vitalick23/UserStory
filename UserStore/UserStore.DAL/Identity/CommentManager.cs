@@ -10,22 +10,22 @@ using UserStore.DAL.EF;
 
 namespace UserStore.DAL.Identity
 {
-    public class CommentManager : ICommentService
+    public class CommentManager : ICommentManager
     {
         public ApplicationContext Database { get; set; }
         public CommentManager(ApplicationContext db)
         {
             Database = db;
         }
+
         public void CreateComment(Comment item)
         {
-                Database.Comments.Add(item);
-            
+            Database.Comments.Add(item);
         }
 
-        public List<Comment> GetCommentByIdStory(int IdStory)
+        public List<Comment> GetCommentByIdStory(int StoryId)
         {
-            return Database.Comments.Where(x => x.StoriesId == IdStory).ToList();
+            return Database.Comments.Where(x => x.StoriesId == StoryId).ToList();
         }
     }
 }

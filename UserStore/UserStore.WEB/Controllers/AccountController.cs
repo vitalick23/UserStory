@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using System.Threading.Tasks;
 using UserStore.Models;
 using System.Security.Claims;
+using Microsoft.AspNet.Identity;
 using UserStore.BLL.Interfaces;
 using UserStore.BLL.Entities;
 
@@ -15,10 +16,13 @@ namespace UserStore.Controllers
     public class AccountController : Controller
     {
       
-        private readonly IUserService _userService;
+        private readonly IUserService userService;
+
+      
         public AccountController(IUserService userService)
         {
-            _userService = userService;
+            
+            this.userService = userService;
         }
         private IAuthenticationManager AuthenticationManager
         {
@@ -43,7 +47,7 @@ namespace UserStore.Controllers
             if (ModelState.IsValid)
             {
                 User userDto = new User{ Email = model.Email, PasswordHash = model.Password};
-                ClaimsIdentity claim = await _userService.Authenticate(userDto);
+                ClaimsIdentity claim = await userService.Authenticate(userDto);
                 if (claim == null)
                 {
                     ModelState.AddModelError("", "Неверный логин или пароль.");
@@ -84,11 +88,13 @@ namespace UserStore.Controllers
                     Email = model.Email,
                     PasswordHash = model.Password,
                 };
-                 await _userService.Create(user,model.Password);
-                 return View("SuccessRegister");
+                 var result = await userService.Create(user,model.Password);
+                 if(result.Succeeded)return View("SuccessRegister");
+                else ModelState.AddModelError(result.Errors.ToString(),new Exception());
             }
             return View(model);
         }
-        
+
+       
     }
 }

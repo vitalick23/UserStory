@@ -1,0 +1,14 @@
+﻿@model UserStore.BLL.Entities.Story
+
+<div class="=well">
+    @using (Html.BeginForm("Stories", "Story", new {id = @Model.Id}))
+    {
+        <h1><strong>@Model.Theme</strong></h1>
+        <p>@Model.Stories</p>
+        <div class="pull-right">
+            <input type="submit" class="btn btn-success" value="See" />
+        </div>
+    }
+    
+   
+</div>

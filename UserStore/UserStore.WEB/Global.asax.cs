@@ -37,6 +37,8 @@ namespace UserStore
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<StoryService>().As<IStorySevice>();
             builder.RegisterType<StoryManager>().As<IStoryManager>();
+            builder.RegisterType<CommentService>().As<ICommentService>();
+            builder.RegisterType<CommentManager>().As<ICommentManager>();
             container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
