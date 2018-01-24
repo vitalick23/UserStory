@@ -50,6 +50,12 @@ namespace UserStore.BLL.Services
         {
             Database.Dispose();
         }
+
+        public Task<ApplicationUser> FindById(string id)
+        {
+            if (String.IsNullOrWhiteSpace(id)) return Task.FromResult((ApplicationUser)null);
+            return userManager.FindAsync(id);
+        }
     }
 
     

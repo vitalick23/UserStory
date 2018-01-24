@@ -35,6 +35,8 @@ namespace UserStore
             builder.RegisterType<DAL.Identity.UserManager>().As<IUserManager>();
             builder.Register<IUserStore<ApplicationUser>>(x=>new UserStore<ApplicationUser>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<StoryService>().As<IStorySevice>();
+            builder.RegisterType<StoryManager>().As<IStoryManager>();
             container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

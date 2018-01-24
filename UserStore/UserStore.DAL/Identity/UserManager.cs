@@ -32,6 +32,11 @@ namespace UserStore.DAL.Identity
             return  userManager.FindAsync(email,password);
         }
 
+        public Task<ApplicationUser> FindAsync(string id)
+        {
+            return userManager.FindByIdAsync(id);
+        }
+
         public  Task<ApplicationUser> FindByEmailAsync(string email)
         {
             return  userManager.FindByEmailAsync(email);

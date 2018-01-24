@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Owin.Security;
@@ -26,6 +27,8 @@ namespace UserStore.Controllers
                 return HttpContext.GetOwinContext().Authentication;
             }
         }
+
+    
 
         public ActionResult Login()
         {
@@ -63,12 +66,12 @@ namespace UserStore.Controllers
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
+        
         public ActionResult Register()
         {
             return View();
         }
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterModel model)

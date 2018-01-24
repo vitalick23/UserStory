@@ -16,5 +16,7 @@ namespace UserStore.BLL.Interfaces
 
         Task<ApplicationUser> FindAsync(string email, string password);
 
+        Task<ApplicationUser> FindAsync(string id);
+
     }
 }

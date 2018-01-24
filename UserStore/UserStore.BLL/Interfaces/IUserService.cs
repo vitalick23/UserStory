@@ -10,5 +10,7 @@ namespace UserStore.BLL.Interfaces
     {
         Task Create(ApplicationUser userDto);
         Task<ClaimsIdentity> Authenticate(ApplicationUser userDto);
+
+        Task<ApplicationUser> FindById(string id);
     } 
 }

@@ -77,9 +77,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EF\ApplicationContext.cs" />
+    <Compile Include="Identity\CommentManager.cs" />
+    <Compile Include="Identity\StoryManager.cs" />
     <Compile Include="Migrations\201801230752596_Init.cs" />
     <Compile Include="Migrations\201801230752596_Init.Designer.cs">
       <DependentUpon>201801230752596_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801240832342_ add Comment and Story.cs" />
+    <Compile Include="Migrations\201801240832342_ add Comment and Story.Designer.cs">
+      <DependentUpon>201801240832342_ add Comment and Story.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801241000111_ change int Id.cs" />
+    <Compile Include="Migrations\201801241000111_ change int Id.Designer.cs">
+      <DependentUpon>201801241000111_ change int Id.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -100,6 +110,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201801230752596_Init.resx">
       <DependentUpon>201801230752596_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801240832342_ add Comment and Story.resx">
+      <DependentUpon>201801240832342_ add Comment and Story.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801241000111_ change int Id.resx">
+      <DependentUpon>201801241000111_ change int Id.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

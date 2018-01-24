@@ -8,6 +8,9 @@ namespace UserStore.DAL.EF
     public class ApplicationContext: IdentityDbContext<ApplicationUser>, IContext
     {
         public ApplicationContext() : base("DefaultConnection") { }
-        
+
+        public DbSet<Story> Story { get; set; }
+        public DbSet<Comment> Comment { get; set; }
+
     }
 }

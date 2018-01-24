@@ -104,6 +104,11 @@ namespace UserStory.WEB.Test
             throw new NotImplementedException();
         }
 
+        public Task<ApplicationUser> FindById(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public  Task Create(ApplicationUser userDto)
         {
             if (!flagCreate) throw new NotImplementedException();

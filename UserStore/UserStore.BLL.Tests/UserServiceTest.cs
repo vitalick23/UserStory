@@ -196,6 +196,11 @@ namespace UserStore.BLL.Tests
             return Task.FromResult((ApplicationUser)null);
         }
 
+        public Task<ApplicationUser> FindAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<ApplicationUser> FindByEmailAsync(string email)
         {
             if (user.Email == email) return Task.FromResult(user);
