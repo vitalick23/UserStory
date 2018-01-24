@@ -18,12 +18,12 @@ namespace UserStore.BLL.Tests
     {
         private FakeIUnitOfwork fakeIUnitOfwork;
         private FakeUserManager _fakeUserManager;
-        private ApplicationUser user;
+        private User user;
         public UserServiceTest()
         {
             _fakeUserManager = new FakeUserManager();
             fakeIUnitOfwork = new FakeIUnitOfwork();
-            user = new ApplicationUser();
+            user = new User();
 
         }
         #region TestsCreate
@@ -33,7 +33,7 @@ namespace UserStore.BLL.Tests
         {
             user.Email = "sd";
             _fakeUserManager.SetUser(user);
-            var newUser = new ApplicationUser();
+            var newUser = new User();
             fakeIUnitOfwork.SetFlagSave(true);
             _fakeUserManager.SetFlagUserCreate(true);
             var result = new UserService(fakeIUnitOfwork,_fakeUserManager);
@@ -94,7 +94,7 @@ namespace UserStore.BLL.Tests
             _fakeUserManager.SetFlagUserCreate(true);
             var result = new UserService(fakeIUnitOfwork, _fakeUserManager);
 
-            await result.Create((ApplicationUser)null);
+            await result.Create((User)null);
 
             Assert.IsTrue(fakeIUnitOfwork.GetCountUsers() == 0);
         }
@@ -106,7 +106,7 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task AuthenticateIfSuccess()
         {
-           var user = new ApplicationUser{Email = "mail"};
+           var user = new User{Email = "mail"};
             _fakeUserManager.SetUser(user); 
             _fakeUserManager.SetFlagIdentityCreate(true);
             var userService = new UserService(fakeIUnitOfwork, _fakeUserManager);
@@ -130,9 +130,9 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task AuthenticateIfNotFound()
         {
-            var user = new ApplicationUser { Email = "mail" };
+            var user = new User { Email = "mail" };
             _fakeUserManager.SetUser(user);
-            var newUser = new ApplicationUser {Email = "newmail"};
+            var newUser = new User {Email = "newmail"};
             var userService = new UserService(fakeIUnitOfwork, _fakeUserManager);
 
             var result = await userService.Authenticate(newUser);
@@ -143,7 +143,7 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task AuthenticateIfNotCreateIdentity()
         {
-            var user = new ApplicationUser { Email = "mail" };
+            var user = new User { Email = "mail" };
             _fakeUserManager.SetUser(user);
            
             var userService = new UserService(fakeIUnitOfwork, _fakeUserManager);
@@ -160,7 +160,7 @@ namespace UserStore.BLL.Tests
 
     public class FakeUserManager : IUserManager
     {
-        private ApplicationUser user;
+        private User user;
         private bool flagUserCreate = false;
         private bool flagIdentityCreate = false;
 
@@ -172,39 +172,39 @@ namespace UserStore.BLL.Tests
         {
             flagIdentityCreate = flag;
         }
-        public void SetUser(ApplicationUser user)
+        public void SetUser(User user)
         {
             this.user = user;
         }
-        public UserManager<ApplicationUser> UserManagers;
+        public UserManager<User> UserManagers;
 
-        public Task<IdentityResult> CreateAsync(ApplicationUser user, string password)
+        public Task<IdentityResult> CreateAsync(User user, string password)
         {
             if (flagUserCreate) return Task.FromResult(IdentityResult.Success);
             return Task.FromResult(IdentityResult.Failed());
         }
 
-        public Task<ClaimsIdentity> CreateIdentityAsync(ApplicationUser user, string authenticationTypes)
+        public Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationTypes)
         {
             if(flagIdentityCreate) return Task.FromResult(new ClaimsIdentity());
             return Task.FromResult((ClaimsIdentity)null);
         }
 
-        public Task<ApplicationUser> FindAsync(string email, string password)
+        public Task<User> FindAsync(string email, string password)
         {
             if (user.Email == email) return Task.FromResult(user);
-            return Task.FromResult((ApplicationUser)null);
+            return Task.FromResult((User)null);
         }
 
-        public Task<ApplicationUser> FindAsync(string id)
+        public Task<User> FindAsync(string id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ApplicationUser> FindByEmailAsync(string email)
+        public Task<User> FindByEmailAsync(string email)
         {
             if (user.Email == email) return Task.FromResult(user);
-            return Task.FromResult((ApplicationUser) null);
+            return Task.FromResult((User) null);
         }
     }
 }
@@ -214,11 +214,11 @@ namespace UserStore.BLL.Tests
     public class FakeIUnitOfwork : IUnitOfWork
     {
         private bool flagSave = false;
-        private List<ApplicationUser> listUser;
+        private List<User> listUser;
 
         public FakeIUnitOfwork()
         {
-            listUser = new List<ApplicationUser>();
+            listUser = new List<User>();
         }
 
         public int GetCountUsers()
@@ -229,7 +229,7 @@ namespace UserStore.BLL.Tests
         {
             flagSave = flag;
         }
-        public Microsoft.AspNet.Identity.UserManager<ApplicationUser> UserManager => throw new NotImplementedException();
+        public Microsoft.AspNet.Identity.UserManager<User> UserManager => throw new NotImplementedException();
 
         public Microsoft.AspNet.Identity.RoleManager<ApplicationRole> RoleManager => throw new NotImplementedException();
 
@@ -240,7 +240,7 @@ namespace UserStore.BLL.Tests
 
         public async Task SaveAsync()
         {
-            if (flagSave) listUser.Add(new ApplicationUser());
+            if (flagSave) listUser.Add(new User());
 
         }
     }

@@ -11,7 +11,7 @@ namespace UserStore.BLL.Services
 {
     public class StoryService : IStorySevice
     {
-        private IUnitOfWork database { get; set; }
+        private IUnitOfWork unitOfWork;
         private IStoryManager storyManager;
         private IUserManager userManager;
 
@@ -19,17 +19,16 @@ namespace UserStore.BLL.Services
         {
             this.storyManager = storiesManager;
             this.userManager = userManager;
-            database = uow;
+            unitOfWork = uow;
 
         }
         public async Task<IdentityResult> Create(Story item)
         {
             if (item != null)
             {
-                item.ApplicationUser = await userManager.FindAsync(item.IdUser);
-                var result  = await storyManager.Create(item);
-                if (result.Succeeded) await database.SaveAsync();
-                return result;
+               // item.User = await userManager.FindAsync(item.UserId);
+                storyManager.Create(item);
+                await unitOfWork.SaveAsync();
             }
 
             return await Task.FromResult(IdentityResult.Failed("Null Story"));

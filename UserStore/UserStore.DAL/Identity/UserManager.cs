@@ -10,34 +10,34 @@ namespace UserStore.DAL.Identity
 {
     public class UserManager :  IUserManager
     {
-        private UserManager<ApplicationUser> userManager;
+        private UserManager<User> userManager;
 
-        public UserManager(UserManager<ApplicationUser> userManager)
+        public UserManager(UserManager<User> userManager)
         {
             this.userManager = userManager;
         }
        
-        public Task<IdentityResult> CreateAsync(ApplicationUser user, string password)
+        public Task<IdentityResult> CreateAsync(User user, string password)
         {
             return  userManager.CreateAsync(user, password);
         }
 
-        public  Task<ClaimsIdentity> CreateIdentityAsync(ApplicationUser user, string authenticationTypes)
+        public  Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationTypes)
         {
             return  userManager.CreateIdentityAsync(user, authenticationTypes);
         }
 
-        public  Task<ApplicationUser> FindAsync(string email, string password)
+        public  Task<User> FindAsync(string email, string password)
         {
             return  userManager.FindAsync(email,password);
         }
 
-        public Task<ApplicationUser> FindAsync(string id)
+        public Task<User> FindAsync(string id)
         {
             return userManager.FindByIdAsync(id);
         }
 
-        public  Task<ApplicationUser> FindByEmailAsync(string email)
+        public  Task<User> FindByEmailAsync(string email)
         {
             return  userManager.FindByEmailAsync(email);
         }

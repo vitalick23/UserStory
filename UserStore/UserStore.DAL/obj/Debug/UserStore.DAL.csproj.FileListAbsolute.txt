@@ -134,10 +134,8 @@ D:\Work\UserStory\UserStore\UserStore.DAL\bin\Debug\Microsoft.Owin.Security.Cook
 D:\Work\UserStory\UserStore\UserStore.DAL\bin\Debug\Microsoft.Owin.Security.OAuth.xml
 D:\Work\UserStory\UserStore\UserStore.DAL\bin\Debug\Newtonsoft.Json.xml
 D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.csprojResolveAssemblyReference.cache
-D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.Migrations.Init.resources
-D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.csproj.GenerateResource.Cache
 D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.csproj.CoreCompileInputs.cache
 D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.dll
 D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.pdb
-D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.Migrations.addCommentandStory.resources
-D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.Migrations.changeintId.resources
+D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.Migrations.init.resources
+D:\Work\UserStory\UserStore\UserStore.DAL\obj\Debug\UserStore.DAL.csproj.GenerateResource.Cache

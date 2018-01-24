@@ -10,6 +10,6 @@ namespace UserStore.BLL.Interfaces
 {
     public interface IContext
     {
-        IDbSet<ApplicationUser> Users { get; set; }
+        IDbSet<User> Users { get; set; }
     }
 }

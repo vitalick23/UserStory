@@ -17,34 +17,27 @@ namespace UserStore.DAL.Identity
         {
             Database = db;
         }
-        public Task<IdentityResult> Create(Story item)
+        public void Create(Story item)
         {
-            try
-            {
-                Database.Story.Add(item);
-                return Task.FromResult(IdentityResult.Success);
-            }
-            catch (Exception ex)
-            {
-                return Task.FromResult(IdentityResult.Failed(ex.Message));
-            }
+            Database.Stories.Add(item);
+            //Database.SaveChanges();
         }
 
         public List<Story> GetStories()
         {
-            return Database.Story.ToList();
+            return Database.Stories.ToList();
         }
 
         public Story GetStories(int idStory)
         {
-            var story = Database.Story.First(x => x.Id == idStory);
+            var story = Database.Stories.First(x => x.Id == idStory);
             if (story == null) return null;
             return story;
         }
 
         public List<Story> GetStoriesByUserName(string userName)
         {
-            return Database.Story.Where(x => x.IdUser == 
+            return Database.Stories.Where(x => x.UserId == 
                                              Database.Users.First(q => q.UserName == userName).Id)
                 .ToList();
         }

@@ -17,22 +17,15 @@ namespace UserStore.DAL.Identity
         {
             Database = db;
         }
-        public Task<IdentityResult> CreateComment(Comment item)
+        public void CreateComment(Comment item)
         {
-            try
-            {
-                Database.Comment.Add(item);
-                return Task.FromResult(IdentityResult.Success);
-            }
-            catch (Exception ex)
-            {
-                return Task.FromResult(IdentityResult.Failed(ex.Message));
-            }
+                Database.Comments.Add(item);
+            
         }
 
         public List<Comment> GetCommentByIdStory(int IdStory)
         {
-            return Database.Comment.Where(x => x.StoriesId == IdStory).ToList();
+            return Database.Comments.Where(x => x.StoriesId == IdStory).ToList();
         }
     }
 }

@@ -29,11 +29,11 @@ namespace UserStore
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterType<IdentityUnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
-            builder.RegisterType<UserManager<ApplicationUser>>();
-            builder.RegisterType<UserStore<ApplicationUser>>();
-            builder.RegisterType<UserManager<ApplicationUser>>();
+            builder.RegisterType<UserManager<User>>();
+            builder.RegisterType<UserStore<User>>();
+            builder.RegisterType<UserManager<User>>();
             builder.RegisterType<DAL.Identity.UserManager>().As<IUserManager>();
-            builder.Register<IUserStore<ApplicationUser>>(x=>new UserStore<ApplicationUser>(x.Resolve<ApplicationContext>()));
+            builder.Register<IUserStore<User>>(x=>new UserStore<User>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<StoryService>().As<IStorySevice>();
             builder.RegisterType<StoryManager>().As<IStoryManager>();

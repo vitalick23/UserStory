@@ -8,15 +8,15 @@ namespace UserStore.BLL.Interfaces
 {
     public interface IUserManager 
     {
-        Task<ApplicationUser> FindByEmailAsync(string email);
+        Task<User> FindByEmailAsync(string email);
 
-        Task<IdentityResult> CreateAsync(ApplicationUser user, string password);
+        Task<IdentityResult> CreateAsync(User user, string password);
 
-        Task<ClaimsIdentity> CreateIdentityAsync(ApplicationUser user, string authenticationTypes);
+        Task<ClaimsIdentity> CreateIdentityAsync(User user, string authenticationTypes);
 
-        Task<ApplicationUser> FindAsync(string email, string password);
+        Task<User> FindAsync(string email, string password);
 
-        Task<ApplicationUser> FindAsync(string id);
+        Task<User> FindAsync(string id);
 
     }
 }

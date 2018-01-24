@@ -10,7 +10,7 @@ namespace UserStore.BLL.Interfaces
 {
     public interface IStoryManager
     {
-        Task<IdentityResult> Create(Story item);
+        void Create(Story item);
 
         List<Story> GetStories();
 

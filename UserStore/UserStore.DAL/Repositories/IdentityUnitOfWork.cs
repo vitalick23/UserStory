@@ -16,9 +16,9 @@ namespace UserStore.DAL.Repositories
         private IUserManager userManager;
         private RoleManager<ApplicationRole> roleManager;
         
-        public IdentityUnitOfWork(IUserManager userManager)
+        public IdentityUnitOfWork(IUserManager userManager,ApplicationContext applicationContext)
         {
-            db = new ApplicationContext();
+            db = applicationContext;
             this.userManager = userManager; 
             roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
         }
@@ -28,9 +28,9 @@ namespace UserStore.DAL.Repositories
             get { return roleManager; }
         }
 
-        public async Task SaveAsync()
+        public Task SaveAsync()
         {
-            await db.SaveChangesAsync();
+             return db.SaveChangesAsync();
         }
 
         public void Dispose()

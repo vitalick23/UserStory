@@ -18,26 +18,26 @@ namespace UserStore.BLL.Services
             Database = uow;
         }
 
-        public async Task Create(ApplicationUser user)
+        public async Task Create(User user,string password)
         {
             if (user != null)
             {
                 var userFound = await userManager.FindByEmailAsync(user.Email);
                 if (userFound == null)
                 {
-                    userFound = new ApplicationUser{Email = user.Email,UserName = user.UserName};
-                    var result = await userManager.CreateAsync(userFound, user.PasswordHash);
-                    if (result.Succeeded) await Database.SaveAsync();
+                    userFound = new User{Email = user.Email,UserName = user.Email};
+                    await userManager.CreateAsync(userFound, password);
+                    await Database.SaveAsync();
                 }
             }
         }
 
-        public async Task<ClaimsIdentity> Authenticate(ApplicationUser userDto)
+        public async Task<ClaimsIdentity> Authenticate(User userDto)
         {
             
             ClaimsIdentity claim = null;
             if (userDto == null) return await Task.FromResult(claim);
-            ApplicationUser user = await userManager.FindAsync(userDto.Email, userDto.PasswordHash);
+            User user = await userManager.FindAsync(userDto.Email, userDto.PasswordHash);
             if(user!=null)
                 claim= await userManager.CreateIdentityAsync(user,
                                                              DefaultAuthenticationTypes.ApplicationCookie
@@ -51,9 +51,9 @@ namespace UserStore.BLL.Services
             Database.Dispose();
         }
 
-        public Task<ApplicationUser> FindById(string id)
+        public Task<User> FindById(string id)
         {
-            if (String.IsNullOrWhiteSpace(id)) return Task.FromResult((ApplicationUser)null);
+            if (String.IsNullOrWhiteSpace(id)) return Task.FromResult((User)null);
             return userManager.FindAsync(id);
         }
     }

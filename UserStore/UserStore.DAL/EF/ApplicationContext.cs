@@ -5,12 +5,12 @@ using UserStore.BLL.Interfaces;
 
 namespace UserStore.DAL.EF
 {
-    public class ApplicationContext: IdentityDbContext<ApplicationUser>, IContext
+    public class ApplicationContext: IdentityDbContext<User>, IContext
     {
         public ApplicationContext() : base("DefaultConnection") { }
 
-        public DbSet<Story> Story { get; set; }
-        public DbSet<Comment> Comment { get; set; }
+        public DbSet<Story> Stories { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
     }
 }

@@ -25,22 +25,20 @@ namespace UserStore.BLL.Services
 
         }
 
-        public async Task<IdentityResult> CreateComment(Comment item)
+        public async void CreateComment(Comment item)
         {
             if (item != null)
             {
                 item.Story = storyManager.GetStories(item.Id);
-                item.ApplicationUser = await userManager.FindAsync(item.UserId);
-                var result  = await commentService.CreateComment(item);
-                if (result.Succeeded) await database.SaveAsync();
-                return result;
-            }
-            return IdentityResult.Failed("Null Comment");
+                item.User = await userManager.FindAsync(item.UserId);
+                commentService.CreateComment(item);
+                
+            } 
         }
 
         public List<Comment> GetCommentByIdStory(int StoryId)
         {
-            throw new NotImplementedException();
+           return commentService.GetCommentByIdStory(StoryId);
         }
     }
 }

@@ -19,13 +19,14 @@ namespace UserStore.Controllers
             this.storyService = storyService;
         }
 
-        // GET: Story
+        // GET: Stories
         public ActionResult Index()
         {
             return View();
         }
 
         [Authorize]
+        [HttpGet]
         public ActionResult CreateStory()
         {
             return View();

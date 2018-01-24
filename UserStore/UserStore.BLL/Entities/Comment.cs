@@ -13,7 +13,7 @@ namespace UserStore.BLL.Entities
         [Key]
         public int Id { get; set; }
 
-        [ForeignKey("ApplicationUser")]
+        [ForeignKey("User")]
         public string UserId { get; set; }
 
         [ForeignKey("Story")]
@@ -23,7 +23,7 @@ namespace UserStore.BLL.Entities
 
         public DateTime TimePublicate { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public virtual Story Story { get; set; }
     }

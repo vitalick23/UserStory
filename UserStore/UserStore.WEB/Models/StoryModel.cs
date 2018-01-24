@@ -18,12 +18,12 @@ namespace UserStore.Models
 
         public DateTime TimePublicate { get; set; }
 
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
 
         public static explicit operator Story(StoryModel model)
         {
             var story = new Story{
-            IdUser = model.UserId,
+            UserId = model.UserId,
             Stories = model.Stories,
             Theme = model.Theme,
             TimePublicate = model.TimePublicate};

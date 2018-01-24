@@ -99,17 +99,17 @@ namespace UserStory.WEB.Test
             flagCreate = flag;
         }
 
-        public Task<ClaimsIdentity> Authenticate(ApplicationUser userDto)
+        public Task<ClaimsIdentity> Authenticate(User userDto)
         {
             throw new NotImplementedException();
         }
 
-        public Task<ApplicationUser> FindById(string id)
+        public Task<User> FindById(string id)
         {
             throw new NotImplementedException();
         }
 
-        public  Task Create(ApplicationUser userDto)
+        public  Task Create(User userDto)
         {
             if (!flagCreate) throw new NotImplementedException();
             return Task.CompletedTask;

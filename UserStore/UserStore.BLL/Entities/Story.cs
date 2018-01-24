@@ -12,11 +12,11 @@ namespace UserStore.BLL.Entities
     {
         [Key]
         public int Id { get; set; }
-        [ForeignKey("ApplicationUser")]
-        public string IdUser { get; set; }
+        [ForeignKey("User")]
+        public string UserId { get; set; }
         public string Theme { get; set; }
         public string Stories { get; set; }
         public DateTime TimePublicate { get; set; }
-        public virtual ApplicationUser ApplicationUser { get; set; }
+        public virtual User User { get; set; }
     }
 }

@@ -8,9 +8,9 @@ namespace UserStore.BLL.Interfaces
 {
     public interface IUserService : IDisposable
     {
-        Task Create(ApplicationUser userDto);
-        Task<ClaimsIdentity> Authenticate(ApplicationUser userDto);
+        Task Create(User userDto, string password);
+        Task<ClaimsIdentity> Authenticate(User userDto);
 
-        Task<ApplicationUser> FindById(string id);
+        Task<User> FindById(string id);
     } 
 }

@@ -42,7 +42,7 @@ namespace UserStore.Controllers
           
             if (ModelState.IsValid)
             {
-                ApplicationUser userDto = new ApplicationUser{ Email = model.Email, PasswordHash = model.Password};
+                User userDto = new User{ Email = model.Email, PasswordHash = model.Password};
                 ClaimsIdentity claim = await _userService.Authenticate(userDto);
                 if (claim == null)
                 {
@@ -79,12 +79,12 @@ namespace UserStore.Controllers
             if (ModelState.IsValid)
             {
                 if(model == null) return View(model);
-                ApplicationUser user = new ApplicationUser
+                User user = new User
                 {
                     Email = model.Email,
                     PasswordHash = model.Password,
                 };
-                 await _userService.Create(user);
+                 await _userService.Create(user,model.Password);
                  return View("SuccessRegister");
             }
             return View(model);

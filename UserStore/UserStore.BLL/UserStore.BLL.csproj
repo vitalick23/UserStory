@@ -77,7 +77,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\ApplicationRole.cs" />
-    <Compile Include="Entities\ApplicationUser.cs" />
+    <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Story.cs" />
     <Compile Include="Interfaces\IApplicationRoleManager.cs" />
