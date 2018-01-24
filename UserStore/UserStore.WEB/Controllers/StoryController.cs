@@ -52,6 +52,7 @@ namespace UserStore.Controllers
         public ActionResult Stories(int id)
         {
             var story =  storyService.GetStories(id);
+
             if (story != null)
             {
                 var model = new StoryAndCommentModel();
