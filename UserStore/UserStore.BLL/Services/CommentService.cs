@@ -11,12 +11,14 @@ namespace UserStore.BLL.Services
 {
     public class CommentService : ICommentService
     {
-        private IUnitOfWork unitOfWork { get; set; }
+        private IUnitOfWork unitOfWork;
         
         private ICommentManager commentService;
+        private IUserService userService;
 
-        public CommentService(IUnitOfWork uow,ICommentManager commentService)
+        public CommentService(IUnitOfWork uow,ICommentManager commentService, IUserService userService)
         {
+            this.userService = userService;
             this.commentService = commentService;
             unitOfWork = uow;
 
@@ -33,9 +35,15 @@ namespace UserStore.BLL.Services
             } 
         }
 
-        public List<Comment> GetCommentByIdStory(int StoryId)
+        public async Task<List<Comment>> GetCommentByIdStory(int StoryId)
         {
-           return commentService.GetCommentByIdStory(StoryId);
+           var resylt = commentService.GetCommentByIdStory(StoryId);
+            foreach (var item in resylt)
+            {
+                if (item.User == null) item.User = await userService.FindById(item.UserId);
+            }
+
+            return resylt;
         }
     }
 }

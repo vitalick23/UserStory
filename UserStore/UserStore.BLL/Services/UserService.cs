@@ -31,7 +31,7 @@ namespace UserStore.BLL.Services
                     return IdentityResult.Success;
                 }
             }
-            return IdentityResult.Failed("Null user");
+            return IdentityResult.Failed("Found user");
         }
 
         public async Task<ClaimsIdentity> Authenticate(User userDto)
@@ -40,8 +40,8 @@ namespace UserStore.BLL.Services
             ClaimsIdentity claim = null;
             if (userDto == null) return await Task.FromResult(claim);
             User user = await userManager.FindAsync(userDto.Email, userDto.PasswordHash);
-            if(user!=null)
-                claim= await userManager.CreateIdentityAsync(user,
+            if(user != null)
+                claim = await userManager.CreateIdentityAsync(user,
                                                              DefaultAuthenticationTypes.ApplicationCookie
                                                              );
             return claim;

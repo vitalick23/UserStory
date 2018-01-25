@@ -12,6 +12,6 @@ namespace UserStore.BLL.Interfaces
     {
         Task CreateComment(Comment item);
 
-        List<Comment> GetCommentByIdStory(int StoryId);
+        Task<List<Comment>> GetCommentByIdStory(int StoryId);
     }
 }

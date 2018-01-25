@@ -49,7 +49,7 @@ namespace UserStore.Controllers
         }
 
         [HttpGet]
-        public ActionResult Stories(int id)
+        public async Task<ActionResult> Stories(int id)
         {
             var story =  storyService.GetStories(id);
 
@@ -57,25 +57,25 @@ namespace UserStore.Controllers
             {
                 var model = new StoryAndCommentModel();
                 model.Story = story;
-                model.CommentList = commentService.GetCommentByIdStory(id);
+                model.CommentList = await commentService.GetCommentByIdStory(id);
                 return View(model);
 
             }
             else return RedirectToAction("Index", "Home");
         }
 
-       
+        [Authorize]
         [HttpPost]
-        public async Task<ActionResult> CommentPartial(int Storyid, string text)
+        public async Task<ActionResult> CommentPartial(int storyId, string text)
         {
             var comment = new Comment
             {
-                StoriesId = Storyid,
+                StoriesId = storyId,
                 Text = text,
                 UserId = User.Identity.GetUserId()
             };
             await commentService.CreateComment(comment);
-            var allComment = commentService.GetCommentByIdStory(Storyid);
+            var allComment = await commentService.GetCommentByIdStory(storyId);
             
             return PartialView(allComment);
         }

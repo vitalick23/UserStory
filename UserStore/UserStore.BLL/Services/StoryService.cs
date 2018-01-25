@@ -22,20 +22,27 @@ namespace UserStore.BLL.Services
             unitOfWork = uow;
 
         }
+
         public async Task<IdentityResult> Create(Story item)
         {
             if (item != null)
             {
                 item.TimePublicate = DateTime.Now;
-                storyManager.Create(item);
-                await unitOfWork.SaveAsync();
+                try
+                {
+                    storyManager.Create(item);
+                    await unitOfWork.SaveAsync();
+                }
+                catch (Exception ex)
+                {
+                    return await Task.FromResult(IdentityResult.Failed(ex.Message));
+                }
                 return IdentityResult.Success;
             }
-
             return await Task.FromResult(IdentityResult.Failed("Null Story"));
         }
 
-        public List<Story> GetStories()
+    public List<Story> GetStories()
         {
             return storyManager.GetStories();
         }
