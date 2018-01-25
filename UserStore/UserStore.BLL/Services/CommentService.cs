@@ -22,10 +22,11 @@ namespace UserStore.BLL.Services
 
         }
 
-        public async void CreateComment(Comment item)
+        public async Task CreateComment(Comment item)
         {
             if (item != null)
             {
+                item.TimePublicate = DateTime.Now;
                 commentService.CreateComment(item);
                 await unitOfWork.SaveAsync();
 

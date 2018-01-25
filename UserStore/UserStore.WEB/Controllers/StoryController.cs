@@ -58,24 +58,25 @@ namespace UserStore.Controllers
                 var model = new StoryAndCommentModel();
                 model.Story = story;
                 model.CommentList = commentService.GetCommentByIdStory(id);
-                return View(story);
+                return View(model);
 
             }
             else return RedirectToAction("Index", "Home");
         }
 
+       
         [HttpPost]
-        public ActionResult CommentPartial(int idStory, string text)
+        public async Task<ActionResult> CommentPartial(int Storyid, string text)
         {
             var comment = new Comment
             {
-                StoriesId = idStory,
+                StoriesId = Storyid,
                 Text = text,
                 UserId = User.Identity.GetUserId()
             };
-            // commentService.CreateComment(comment);
-            var allComment = commentService.GetCommentByIdStory(idStory);
-           
+            await commentService.CreateComment(comment);
+            var allComment = commentService.GetCommentByIdStory(Storyid);
+            
             return PartialView(allComment);
         }
 
