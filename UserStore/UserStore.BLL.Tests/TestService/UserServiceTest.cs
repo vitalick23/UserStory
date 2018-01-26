@@ -10,6 +10,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
+using UserStore.BLL.Interfaces.InterfaceFinder;
 using UserStore.BLL.Services;
 
 //see Home https://docs.microsoft.com/en-us/azure/architecture/patterns/cqrs
@@ -19,16 +20,20 @@ namespace UserStore.BLL.Tests
     [TestClass]
     public class UserServiceTest
     {
-        private readonly Mock<IUnitOfWork> unitOfWorkMock;
-        private readonly Mock<IUserManager> userserviceMock;
-   
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<IUserRepositoru> _userRepositoruMock;
+        private readonly Mock<IUserFinder> _userFinderMock;
+        private readonly Mock<IAuthenticationManager> _autoMock;
+
         private User user;
 
         public UserServiceTest()
         {
-            unitOfWorkMock = new Mock<IUnitOfWork>();
-            userserviceMock = new Mock<IUserManager>();
-            user = new User {Email = "mail", UserName = "mail", Id = "1"};
+            _unitOfWorkMock = new Mock<IUnitOfWork>();
+            _userFinderMock = new Mock<IUserFinder>();
+            _userRepositoruMock = new Mock<IUserRepositoru>();
+            _autoMock = new Mock<IAuthenticationManager>();
+            user = new User { Email = "mail", UserName = "mail", Id = "1" };
 
         }
 
@@ -37,17 +42,20 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task CreateIfSuccess()
         {
-            userserviceMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult((User) null));
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns((User)null);
 
-            userserviceMock.Setup(x => x.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(IdentityResult.Success));
-
-            unitOfWorkMock.Setup(x => x.SaveAsync())
+            _userRepositoruMock.Setup(x => x.Create(It.IsAny<User>(), It.IsAny<string>()));
+               
+            _unitOfWorkMock.Setup(x => x.SaveAsync())
                 .Returns(Task.CompletedTask);
 
             var newUser = new User();
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object, 
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                                );
 
             var result = await userService.Create(newUser, "123");
 
@@ -57,11 +65,15 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task CreateIfFoundUser()
         {
-            userserviceMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns(new User());
 
             var newUser = new User();
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Create(newUser, "123");
 
@@ -71,14 +83,18 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task CreateIfNotCreateUser()
         {
-            userserviceMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns(new User());
 
-            userserviceMock.Setup(x => x.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(IdentityResult.Failed("error")));
+            _userRepositoruMock.Setup(x => x.Create(It.IsAny<User>(), It.IsAny<string>()))
+                .Throws(new Exception());
 
             var newUser = new User();
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Create(newUser, "123");
 
@@ -88,17 +104,20 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task CreateIfNotSaveUser()
         {
-            userserviceMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns(new User());
 
-            userserviceMock.Setup(x => x.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(IdentityResult.Success));
+            _userRepositoruMock.Setup(x => x.Create(It.IsAny<User>(), It.IsAny<string>()));
 
-            unitOfWorkMock.Setup(x => x.SaveAsync())
+            _unitOfWorkMock.Setup(x => x.SaveAsync())
                 .Throws(new SystemException());
 
             var newUser = new User();
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Create(newUser, "123");
 
@@ -108,7 +127,11 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task CreateIfUserNull()
         {
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Create(null, "123");
 
@@ -118,21 +141,24 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task CreateIfUserNameNameEmpty()
         {
-            userserviceMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns(new User());
 
-            userserviceMock.Setup(x => x.CreateAsync(It.IsAny<User>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(IdentityResult.Success));
+            _userRepositoruMock.Setup(x => x.Create(It.IsAny<User>(), It.IsAny<string>()));
 
-            userserviceMock.Setup(x => x.CreateAsync(
+            _userRepositoruMock.Setup(x => x.Create(
                     It.Is<User>(u => String.IsNullOrWhiteSpace(u.UserName)),
                     It.Is<string>(s => s == String.Empty)))
-                .Returns(Task.FromResult(IdentityResult.Failed("Erorr")));
+                .Throws(new Exception());
 
-            unitOfWorkMock.Setup(x => x.SaveAsync())
+            _unitOfWorkMock.Setup(x => x.SaveAsync())
                 .Returns(Task.CompletedTask);
             var newUser = new User();
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Create(newUser, "123");
 
@@ -146,13 +172,17 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task AuthenticateIfSuccess()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.Find(It.IsAny<string>(),It.IsAny<string>()))
+                .Returns(new User());
 
-            userserviceMock.Setup(x => x.CreateIdentityAsync(It.IsAny<User>(), It.IsAny<String>()))
+            _autoMock.Setup(x => x.CreateClaimIdentity(It.IsAny<User>(), It.IsAny<String>()))
                 .Returns(Task.FromResult(new ClaimsIdentity()));
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Authenticate(user);
 
@@ -163,7 +193,11 @@ namespace UserStore.BLL.Tests
         public async Task AuthenticateIfUserNull()
         {
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Authenticate(null);
 
@@ -174,10 +208,14 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task AuthenticateIfNotFound()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(Task.FromResult((User) null));
+            _userFinderMock.Setup(x => x.Find(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns((User)null);
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Authenticate(user);
 
@@ -187,13 +225,17 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task AuthenticateIfNotCreateIdentity()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>(), It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.Find(It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new User());
 
-            userserviceMock.Setup(x => x.CreateIdentityAsync(It.IsAny<User>(), It.IsAny<String>()))
-                .Returns(Task.FromResult((ClaimsIdentity) null));
+            _autoMock.Setup(x => x.CreateClaimIdentity(It.IsAny<User>(), It.IsAny<String>()))
+                .Returns(Task.FromResult((ClaimsIdentity)null));
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.Authenticate(user);
 
@@ -207,10 +249,14 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task FindByIdIfSaccess()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindById(It.IsAny<string>()))
+                .Returns(new User());
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                _userFinderMock.Object,
+                _userRepositoruMock.Object,
+                _autoMock.Object
+            );
 
             var result = await userService.FindById("1");
 
@@ -220,10 +266,14 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task FindByIdIfIdNull()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindById(It.IsAny<string>()))
+                .Returns(new User());
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.FindById(null);
 
@@ -233,10 +283,14 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task FindByIdIfIdEmpty()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
+            _userFinderMock.Setup(x => x.FindById(It.IsAny<string>()))
+                .Returns(new User());
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                                                _userFinderMock.Object,
+                                                _userRepositoruMock.Object,
+                                                _autoMock.Object
+                                            );
 
             var result = await userService.FindById(String.Empty);
 
@@ -246,10 +300,14 @@ namespace UserStore.BLL.Tests
         [TestMethod]
         public async Task FindByIdIfNotFoundUser()
         {
-            userserviceMock.Setup(x => x.FindAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult((User) null));
+            _userFinderMock.Setup(x => x.Find(It.IsAny<string>(),It.IsAny<string>()))
+                .Returns((User)null);
 
-            var userService = new UserService(unitOfWorkMock.Object, userserviceMock.Object);
+            var userService = new UserService(_unitOfWorkMock.Object,
+                _userFinderMock.Object,
+                _userRepositoruMock.Object,
+                _autoMock.Object
+            );
 
             var result = await userService.FindById("2");
 
@@ -261,5 +319,5 @@ namespace UserStore.BLL.Tests
 }
 
 
-    
+
 

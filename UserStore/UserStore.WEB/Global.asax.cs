@@ -32,11 +32,9 @@ namespace UserStore
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterType<IdentityUnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
-            builder.RegisterType<UserManager<User>>();
             builder.RegisterType<UserStore<User>>();
             builder.RegisterType<UserManager<User>>();
             builder.RegisterType<UserRepositoru>();
-            builder.RegisterType<DAL.Identity.UserManager>().As<IUserManager>();
             builder.RegisterType<UserRepositoru>().As<IUserRepositoru>();
             builder.RegisterType<UserFinder>().As<IUserFinder>();
             builder.Register<IUserFinder>(x => new UserFinder(x.Resolve<ApplicationContext>().Users));
@@ -52,9 +50,7 @@ namespace UserStore
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<AuthenticationManager>().As<IAuthenticationManager>();
             builder.RegisterType<StoryService>().As<IStorySevice>();
-            builder.RegisterType<StoryManager>().As<IStoryManager>();
             builder.RegisterType<CommentService>().As<ICommentService>();
-            builder.RegisterType<CommentManager>().As<ICommentManager>();
             container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }

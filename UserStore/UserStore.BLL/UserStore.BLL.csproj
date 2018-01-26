@@ -82,17 +82,14 @@
     <Compile Include="Entities\Story.cs" />
     <Compile Include="Interfaces\IApplicationRoleManager.cs" />
     <Compile Include="Interfaces\IAuthenticationManager.cs" />
-    <Compile Include="Interfaces\ICommentManager.cs" />
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\InterfaceFinder\ICommentFinder.cs" />
     <Compile Include="Interfaces\InterfaceFinder\IStoryFinder.cs" />
     <Compile Include="Interfaces\InterfaceRepositoru\ICommentRepositoru.cs" />
     <Compile Include="Interfaces\InterfaceFinder\IUserFinder.cs" />
     <Compile Include="Interfaces\InterfaceRepositoru\IStoryRepositoru.cs" />
-    <Compile Include="Interfaces\IStoryManager.cs" />
     <Compile Include="Interfaces\IStorySevice.cs" />
     <Compile Include="Interfaces\IFinder.cs" />
-    <Compile Include="Interfaces\IUserManager.cs" />
     <Compile Include="Interfaces\IContext.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
     <Compile Include="Interfaces\IRepositoru.cs" />

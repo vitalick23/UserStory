@@ -7,8 +7,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
 using Microsoft.AspNet.Identity;
-using System.Security.Claims;
 using Moq;
+using UserStore.BLL.Interfaces.InterfaceFinder;
+using UserStore.BLL.Interfaces.InterfaceRepositoru;
 using UserStore.BLL.Services;
 
 namespace UserStore.BLL.Tests.TestService
@@ -17,18 +18,20 @@ namespace UserStore.BLL.Tests.TestService
     [TestClass]
     public class StoryServiceTest
     {
-        private readonly Mock<IUnitOfWork> UnitOfWorkMock;
-        private readonly Mock<IStoryManager> storyManagerMock;
-        private readonly Mock<IUserManager> userManagerMock;
+        private readonly Mock<IUnitOfWork> _unitOfWorkMock;
+        private readonly Mock<IStoryFinder> _storfinderMock;
+        private readonly Mock<IStoryRepositoru> _storyRepositoryMock;
+        private readonly Mock<IUserFinder> _userFinderMock;
         
         private Story story;
         private User user;
 
         public StoryServiceTest()
         {
-            userManagerMock = new Mock<IUserManager>();
-            UnitOfWorkMock = new Mock<IUnitOfWork>();
-            storyManagerMock = new Mock<IStoryManager>();
+            _storyRepositoryMock = new Mock<IStoryRepositoru>();
+            _unitOfWorkMock = new Mock<IUnitOfWork>();
+            _storfinderMock = new Mock<IStoryFinder>();
+            _userFinderMock = new Mock<IUserFinder>();
             user = new User {UserName = "1", Email = "1"};
             story = new Story
             {
@@ -42,10 +45,14 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public async Task CreateIfSuccess()
         {
-            storyManagerMock.Setup(x => x.Create(story));
+            _storyRepositoryMock.Setup(x => x.Create(story));
 
-            UnitOfWorkMock.Setup(x => x.SaveAsync()).Returns(Task.CompletedTask);
-            var userStories = new StoryService(UnitOfWorkMock.Object,storyManagerMock.Object,userManagerMock.Object);
+            _unitOfWorkMock.Setup(x => x.SaveAsync()).Returns(Task.CompletedTask);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                              );
 
             var result = await userStories.Create(story);
 
@@ -55,8 +62,12 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public async Task CreateIfStoryNull()
         {
-            
-            var userStories = new StoryService(UnitOfWorkMock.Object, storyManagerMock.Object, userManagerMock.Object);
+
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                              );
 
             var result = await userStories.Create(null);
 
@@ -66,8 +77,14 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public async Task CreateIfNotCreate()
         {
-            storyManagerMock.Setup(x => x.Create(It.IsAny<Story>())).Throws<System.ArgumentOutOfRangeException>();
-            var userStories = new StoryService(UnitOfWorkMock.Object, storyManagerMock.Object, userManagerMock.Object);
+            _storyRepositoryMock.Setup(x => x.Create(It.IsAny<Story>()))
+                .Throws<System.ArgumentOutOfRangeException>();
+
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                              );
 
             var result = await userStories.Create(story);
 
@@ -78,9 +95,15 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public async Task CreateIfNotSave()
         {
-            UnitOfWorkMock.Setup(x => x.SaveAsync()).Returns(Task.FromException(new Exception()));
-            var userStories = new StoryService(UnitOfWorkMock.Object, storyManagerMock.Object, userManagerMock.Object);
-
+            _storyRepositoryMock.Setup(x => x.Create(It.IsAny<Story>()))
+                .Throws<System.ArgumentOutOfRangeException>();
+            _unitOfWorkMock.Setup(x => x.SaveAsync())
+                .Returns(Task.FromException(new Exception()));
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                              );
             var result = await userStories.Create(story);
             
             Assert.IsFalse(result.Succeeded);
@@ -92,17 +115,17 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public void GetStoriesAllIfSuccess()
         {
-            storyManagerMock.Setup(x => x.GetStories())
+            _storfinderMock.Setup(x => x.GetStories())
                 .Returns(new List<Story>
                 {
                     new Story(),
                     new Story()
                 });
-            var userStories = new 
-                StoryService( UnitOfWorkMock.Object,
-                                storyManagerMock.Object, 
-                                userManagerMock.Object
-                            );
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStories();
 
@@ -112,11 +135,14 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public void GetStoriesAllIfNull()
         {
-            storyManagerMock.Setup(x => x.GetStories())
+            _storfinderMock.Setup(x => x.GetStories())
                 .Returns((List<Story>)null);
-               
-            var userStories = new StoryService(UnitOfWorkMock.Object,
-                storyManagerMock.Object, userManagerMock.Object);
+
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStories();
 
@@ -126,9 +152,12 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public void GetStoriesOneIfIdNegative()
         {
-            
-            var userStories = new StoryService(UnitOfWorkMock.Object, 
-                storyManagerMock.Object, userManagerMock.Object);
+
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStories(-2);
 
@@ -138,10 +167,13 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public void GetStoriesOneIfSuccess()
         {
-            storyManagerMock.Setup(x => x.GetStories(It.IsAny<int>()))
+            _storfinderMock.Setup(x => x.GetStories(It.IsAny<int>()))
                 .Returns(new Story());
-
-            var userStories = new StoryService(UnitOfWorkMock.Object, storyManagerMock.Object, userManagerMock.Object);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                    _storyRepositoryMock.Object,
+                                                    _storfinderMock.Object,
+                                                    _userFinderMock.Object
+                                                );
 
             var result = userStories.GetStories(1);
 
@@ -151,11 +183,15 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public void GetStoriesOneIfNotFound()
         {
-            storyManagerMock.Setup(x => x.GetStories(It.Is<int>(i => i > 10)))
+            _storfinderMock.Setup(x => x.GetStories(It.Is<int>(i => i > 10)))
                 .Returns(new Story());
-            storyManagerMock.Setup(x => x.GetStories(It.Is<int>(i => i < 10)))
+            _storfinderMock.Setup(x => x.GetStories(It.Is<int>(i => i < 10)))
                 .Returns((Story)null);
-            var userStories = new StoryService(UnitOfWorkMock.Object, storyManagerMock.Object, userManagerMock.Object);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStories(10);
 
@@ -163,17 +199,20 @@ namespace UserStore.BLL.Tests.TestService
         }
 
         [TestMethod]
-        public void GetStoriesByIDNameUserIfSuccess()
+        public void GetStoriesByUserIdIfSuccess()
         {
-            userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
-            storyManagerMock.Setup(x => x.GetStoriesByUserName(It.IsAny<string>()))
+            _userFinderMock.Setup(x => x.FindById(It.IsAny<string>()))
+                .Returns(new User());
+            _storfinderMock.Setup(x => x.GetStoriesByUserId(It.IsAny<string>()))
                 .Returns(new List<Story>
                 {
                     new Story()
                 });
-            var userStories = new StoryService(UnitOfWorkMock.Object, 
-                storyManagerMock.Object, userManagerMock.Object);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStoriesByUserName("1");
 
@@ -181,10 +220,13 @@ namespace UserStore.BLL.Tests.TestService
         }
 
         [TestMethod]
-        public void GetStoriesByIDNameUserIfEmailNull()
+        public void GetStoriesByUserIDIfIdNull()
         {
-            var userStories = new StoryService(UnitOfWorkMock.Object, 
-                storyManagerMock.Object, userManagerMock.Object);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                _storyRepositoryMock.Object,
+                _storfinderMock.Object,
+                _userFinderMock.Object
+            ); 
 
             var result = userStories.GetStoriesByUserName(null);
 
@@ -194,10 +236,13 @@ namespace UserStore.BLL.Tests.TestService
         [TestMethod]
         public void GetStoriesByIDNameUserIfNotFaundUser()
         {
-            userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult((User) null));
-            var userStories = new StoryService(UnitOfWorkMock.Object, 
-                storyManagerMock.Object, userManagerMock.Object);
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns((User)null);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStoriesByUserName("1");
 
@@ -205,14 +250,17 @@ namespace UserStore.BLL.Tests.TestService
         }
 
         [TestMethod]
-        public void GetStoriesByIDNameUserIfNotFaundStory()
+        public void GetStoriesByUserIdIfNotFaundStory()
         {
-            userManagerMock.Setup(x => x.FindByEmailAsync(It.IsAny<string>()))
-                .Returns(Task.FromResult(new User()));
-            storyManagerMock.Setup(x => x.GetStoriesByUserName(It.IsAny<string>()))
-                .Returns((List<Story>) null);
-            var userStories = new StoryService(UnitOfWorkMock.Object,
-                storyManagerMock.Object, userManagerMock.Object);
+            _userFinderMock.Setup(x => x.FindByEmail(It.IsAny<string>()))
+                .Returns(new User());
+            _storfinderMock.Setup(x => x.GetStoriesByUserId(It.IsAny<string>()))
+                .Returns((List<Story>)null);
+            var userStories = new StoryService(_unitOfWorkMock.Object,
+                                                _storyRepositoryMock.Object,
+                                                _storfinderMock.Object,
+                                                _userFinderMock.Object
+                                            );
 
             var result = userStories.GetStoriesByUserName("1");
 

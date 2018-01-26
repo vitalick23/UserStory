@@ -13,13 +13,12 @@ namespace UserStore.DAL.Repositories
     {
         private ApplicationContext db;
 
-        private IUserManager userManager;
+    
         private RoleManager<ApplicationRole> roleManager;
         
-        public IdentityUnitOfWork(IUserManager userManager,ApplicationContext applicationContext)
+        public IdentityUnitOfWork(ApplicationContext applicationContext)
         {
             db = applicationContext;
-            this.userManager = userManager; 
             roleManager = new ApplicationRoleManager(new RoleStore<ApplicationRole>(db));
         }
 
