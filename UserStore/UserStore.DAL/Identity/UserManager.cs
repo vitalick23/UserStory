@@ -1,10 +1,8 @@
 ﻿using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
-using UserStore.DAL.EF;
 
 namespace UserStore.DAL.Identity
 {

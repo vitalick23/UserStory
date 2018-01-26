@@ -10,6 +10,7 @@ using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
 using UserStore.BLL.Services;
 using UserStore.DAL.EF;
+using UserStore.DAL.Find;
 using UserStore.DAL.Identity;
 using UserStore.DAL.Repositories;
 
@@ -32,7 +33,9 @@ namespace UserStore
             builder.RegisterType<UserManager<User>>();
             builder.RegisterType<UserStore<User>>();
             builder.RegisterType<UserManager<User>>();
+            builder.RegisterType<UserRepository>();
             builder.RegisterType<DAL.Identity.UserManager>().As<IUserManager>();
+            builder.RegisterType<UserFinder>().WithParameter("users")
             builder.Register<IUserStore<User>>(x=>new UserStore<User>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();
             builder.RegisterType<StoryService>().As<IStorySevice>();
