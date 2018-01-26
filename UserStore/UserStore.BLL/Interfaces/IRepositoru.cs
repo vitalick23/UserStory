@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace UserStore.BLL.Interfaces
 {
-    public interface IRepositoru<T> where T: DbSet
+    public interface IRepositoru
     {
-        DbSet<T> Database { get; }
+       
     }
 }

@@ -1,26 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Identity;
 using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
+using UserStore.BLL.Interfaces.InterfaceFinder;
+using UserStore.BLL.Interfaces.InterfaceRepositoru;
 
 namespace UserStore.BLL.Services
 {
     public class CommentService : ICommentService
     {
-        private IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
         
-        private ICommentManager commentService;
-        private IUserService userService;
+        private readonly ICommentFinder _commentFinder;
+        private readonly ICommentRepositoru _commentRepositoru;
+        private readonly IUserFinder _userFinder;
 
-        public CommentService(IUnitOfWork uow,ICommentManager commentService, IUserService userService)
+        public CommentService(IUnitOfWork uow,
+            ICommentFinder commentFinder,
+            IUserFinder userFinder,
+            ICommentRepositoru commentRepositoru)
         {
-            this.userService = userService;
-            this.commentService = commentService;
-            unitOfWork = uow;
+            _userFinder = userFinder;
+            _commentFinder = commentFinder;
+            _commentRepositoru = commentRepositoru;
+            _unitOfWork = uow;
 
         }
 
@@ -29,20 +33,19 @@ namespace UserStore.BLL.Services
             if (item != null)
             {
                 item.TimePublicate = DateTime.Now;
-                commentService.CreateComment(item);
-                await unitOfWork.SaveAsync();
+                _commentRepositoru.CreateComment(item);
+                await _unitOfWork.SaveAsync();
 
             } 
         }
 
         public async Task<List<Comment>> GetCommentByIdStory(int StoryId)
         {
-           var resylt = commentService.GetCommentByIdStory(StoryId);
+           var resylt = _commentFinder.GetCommentByIdStory(StoryId);
             foreach (var item in resylt)
             {
-                if (item.User == null) item.User = await userService.FindById(item.UserId);
+                if (item.User == null) item.User = _userFinder.FindById(item.UserId);
             }
-
             return resylt;
         }
     }

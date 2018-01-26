@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System.Data.Entity;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using UserStore.BLL.Entities;
-using UserStore.BLL.Interfaces;
+using UserStore.BLL.Interfaces.InterfaceFinder;
 
-namespace UserStore.DAL.Find
+namespace UserStore.DAL.Finder
 {
     public class UserFinder : IUserFinder
     {

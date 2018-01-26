@@ -7,8 +7,6 @@ namespace UserStore.DAL.Repositories
 {
     public class UserRepository : IUserRepositoru
     {
-        public DbSet<DbSet> Database { get; }
-
         private readonly UserManager<User> userManager;
 
         public UserRepository(UserManager<User> userManager)

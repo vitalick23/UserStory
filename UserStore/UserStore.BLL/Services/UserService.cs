@@ -4,6 +4,7 @@ using Microsoft.AspNet.Identity;
 using System.Security.Claims;
 using UserStore.BLL.Interfaces;
 using UserStore.BLL.Entities;
+using UserStore.BLL.Interfaces.InterfaceFinder;
 
 namespace UserStore.BLL.Services
 {

@@ -23,9 +23,9 @@ namespace UserStore.DAL.Identity
             Database.Comments.Add(item);
         }
 
-        public List<Comment> GetCommentByIdStory(int StoryId)
+        public List<Comment> GetCommentByIdStory(int storyId)
         {
-            return Database.Comments.Where(x => x.StoriesId == StoryId).ToList();
+            return Database.Comments.Where(x => x.StoriesId == storyId).ToList();
         }
     }
 }
