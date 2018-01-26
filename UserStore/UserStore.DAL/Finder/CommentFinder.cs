@@ -17,7 +17,7 @@ namespace UserStore.DAL.Finder
         }
         public List<Comment> GetCommentByIdStory(int storyId)
         {
-            return _database.Where(x => x.StoriesId == storyId).ToList();
+            return _database.AsQueryable().Where(x => x.StoriesId == storyId).ToList();
         }
     }
 }

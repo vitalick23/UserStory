@@ -1,25 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
+using UserStore.BLL.Interfaces.InterfaceFinder;
+using UserStore.BLL.Interfaces.InterfaceRepositoru;
 
 namespace UserStore.BLL.Services
 {
     public class StoryService : IStorySevice
     {
-        private IUnitOfWork unitOfWork;
-        private IStoryManager storyManager;
-        private IUserManager userManager;
+        private readonly IUnitOfWork _unitOfWork;
+        private readonly IStoryFinder _storyFinder;
+        private readonly IStoryRepositoru _storyRepository;
+        private readonly IUserFinder _userFinder;
 
-        public StoryService(IUnitOfWork uow, IStoryManager storiesManager, IUserManager userManager)
+        public StoryService(IUnitOfWork uow, 
+                        IStoryRepositoru storyRepository,
+                        IStoryFinder storyFinder,
+                        IUserFinder userFinder)
         {
-            this.storyManager = storiesManager;
-            this.userManager = userManager;
-            unitOfWork = uow;
+            _storyFinder = storyFinder;
+            _storyRepository = storyRepository;
+            _userFinder = userFinder;
+            _unitOfWork = uow;
 
         }
 
@@ -30,8 +35,8 @@ namespace UserStore.BLL.Services
                 item.TimePublicate = DateTime.Now;
                 try
                 {
-                    storyManager.Create(item);
-                    await unitOfWork.SaveAsync();
+                    _storyRepository.Create(item);
+                    await _unitOfWork.SaveAsync();
                 }
                 catch (Exception ex)
                 {
@@ -44,20 +49,20 @@ namespace UserStore.BLL.Services
 
     public List<Story> GetStories()
         {
-            return storyManager.GetStories();
+            return _storyFinder.GetStories();
         }
 
         public Story GetStories(int idStory)
         {
             if (idStory < 0) return null;
-            return storyManager.GetStories(idStory);
+            return _storyFinder.GetStories(idStory);
         }
 
-        public  List<Story> GetStoriesByUserName(string email)
+        public  List<Story> GetStoriesByUserName(string id)
         {
-            if (String.IsNullOrWhiteSpace(email)) return null;
-            if (userManager.FindByEmailAsync(email) == null) return null;
-            return storyManager.GetStoriesByUserName(email);
+            if (String.IsNullOrWhiteSpace(id)) return null;
+            if (_userFinder.FindById(id) == null) return null;
+            return _storyFinder.GetStoriesByUserId(id);
         }
     }
 }

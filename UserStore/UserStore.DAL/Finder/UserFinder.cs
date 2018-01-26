@@ -10,11 +10,20 @@ namespace UserStore.DAL.Finder
     public class UserFinder : IUserFinder
     {
         private readonly IDbSet<User> _users;
-
-
+        
         public UserFinder(IDbSet<User> users)
         {
             _users = users;
+        }
+
+        public User FindByEmail(string email)
+        {
+            return _users.AsQueryable().FirstOrDefault(x => x.Email == email);
+        }
+
+        public User FindById(string id)
+        {
+            return _users.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
 
         public User Find(string email, string password)
@@ -26,17 +35,6 @@ namespace UserStore.DAL.Finder
             }
 
             return null;
-        }
-
-        public User FindByEmail(string email)
-        {
-            return _users.AsQueryable().FirstOrDefault(x => x.Email == email);
-        }
-
-
-        public User FindById(string id)
-        {
-            return _users.AsQueryable().FirstOrDefault(x => x.Id == id);
         }
 
     }

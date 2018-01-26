@@ -1,9 +1,5 @@
 ﻿using Microsoft.AspNet.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Mvc;
 using UserStore.BLL.Entities;
 using UserStore.BLL.Interfaces;
@@ -13,13 +9,13 @@ namespace UserStore.Controllers
 {
     public class StoryController : Controller
     {
-        private readonly IStorySevice storyService;
+        private readonly IStorySevice _storyService;
 
-        private readonly ICommentService commentService;
+        private readonly ICommentService _commentService;
         public StoryController(ICommentService commentService,IStorySevice storyService)
         {
-            this.commentService = commentService;
-            this.storyService = storyService;
+            _commentService = commentService;
+            _storyService = storyService;
         }
 
         // GET: Stories
@@ -41,7 +37,7 @@ namespace UserStore.Controllers
         {
             if (ModelState.IsValid && model != null)
             {
-                var result = await storyService.Create((Story) model);  
+                var result = await _storyService.Create((Story) model);  
                 if(result.Succeeded) return RedirectToAction("Index","Home");
                
             }
@@ -51,13 +47,13 @@ namespace UserStore.Controllers
         [HttpGet]
         public async Task<ActionResult> Stories(int id)
         {
-            var story =  storyService.GetStories(id);
+            var story =  _storyService.GetStories(id);
 
             if (story != null)
             {
                 var model = new StoryAndCommentModel();
                 model.Story = story;
-                model.CommentList = await commentService.GetCommentByIdStory(id);
+                model.CommentList = await _commentService.GetCommentByIdStory(id);
                 return View(model);
 
             }
@@ -74,8 +70,8 @@ namespace UserStore.Controllers
                 Text = text,
                 UserId = User.Identity.GetUserId()
             };
-            await commentService.CreateComment(comment);
-            var allComment = await commentService.GetCommentByIdStory(storyId);
+            await _commentService.CreateComment(comment);
+            var allComment = await _commentService.GetCommentByIdStory(storyId);
             
             return PartialView(allComment);
         }

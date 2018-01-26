@@ -78,6 +78,7 @@
   <ItemGroup>
     <Compile Include="EF\ApplicationContext.cs" />
     <Compile Include="Finder\CommentFinder.cs" />
+    <Compile Include="Finder\StoryFinder.cs" />
     <Compile Include="Finder\UserFinder.cs" />
     <Compile Include="Identity\AuthenticationManager.cs" />
     <Compile Include="Identity\CommentManager.cs" />
@@ -92,7 +93,8 @@
     <Compile Include="Identity\UserManager.cs" />
     <Compile Include="Repositories\CommentRepositoru.cs" />
     <Compile Include="Repositories\IdentityUnitOfWork.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Repositories\StoryRepositoru.cs" />
+    <Compile Include="Repositories\UserRepositoru.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

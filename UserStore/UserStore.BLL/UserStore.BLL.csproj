@@ -85,8 +85,10 @@
     <Compile Include="Interfaces\ICommentManager.cs" />
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\InterfaceFinder\ICommentFinder.cs" />
+    <Compile Include="Interfaces\InterfaceFinder\IStoryFinder.cs" />
     <Compile Include="Interfaces\InterfaceRepositoru\ICommentRepositoru.cs" />
     <Compile Include="Interfaces\InterfaceFinder\IUserFinder.cs" />
+    <Compile Include="Interfaces\InterfaceRepositoru\IStoryRepositoru.cs" />
     <Compile Include="Interfaces\IStoryManager.cs" />
     <Compile Include="Interfaces\IStorySevice.cs" />
     <Compile Include="Interfaces\IFinder.cs" />
