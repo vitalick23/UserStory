@@ -11,7 +11,6 @@ namespace UserStore.BLL.Services
     public class CommentService : ICommentService
     {
         private readonly IUnitOfWork _unitOfWork;
-        
         private readonly ICommentFinder _commentFinder;
         private readonly ICommentRepositoru _commentRepositoru;
         private readonly IUserFinder _userFinder;
