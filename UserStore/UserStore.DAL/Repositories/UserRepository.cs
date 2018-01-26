@@ -20,5 +20,7 @@ namespace UserStore.DAL.Repositories
         {
             userManager.Create(user, password);
         }
+
+       
     }
 }

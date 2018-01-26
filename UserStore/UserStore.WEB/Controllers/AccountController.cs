@@ -24,14 +24,7 @@ namespace UserStore.Controllers
             
             this.userService = userService;
         }
-        private IAuthenticationManager AuthenticationManager
-        {
-            get
-            {
-                return HttpContext.GetOwinContext().Authentication;
-            }
-        }
-
+        
     
 
         public ActionResult Login()
@@ -54,8 +47,8 @@ namespace UserStore.Controllers
                 }
                 else
                 {
-                    AuthenticationManager.SignOut();
-                    AuthenticationManager.SignIn(new AuthenticationProperties
+                    HttpContext.GetOwinContext().Authentication.SignOut();
+                    HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties
                     {
                         IsPersistent = true
                     }, claim);
@@ -67,7 +60,7 @@ namespace UserStore.Controllers
 
         public ActionResult Logout()
         {
-            AuthenticationManager.SignOut();
+            HttpContext.GetOwinContext().Authentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
         

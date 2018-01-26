@@ -81,6 +81,7 @@
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\Story.cs" />
     <Compile Include="Interfaces\IApplicationRoleManager.cs" />
+    <Compile Include="Interfaces\IAuthenticationManager.cs" />
     <Compile Include="Interfaces\ICommentManager.cs" />
     <Compile Include="Interfaces\ICommentService.cs" />
     <Compile Include="Interfaces\IUserFinder.cs" />

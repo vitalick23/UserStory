@@ -2,6 +2,7 @@
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using UserStore.BLL.Entities;
 
 namespace UserStore.BLL.Interfaces
@@ -12,6 +13,7 @@ namespace UserStore.BLL.Interfaces
 
         User FindByEmail(string email);
 
-        ClaimsIdentity FindClaimsIdentityByUser(User user);
+        User Find(string email,string password);
+
     }
 }

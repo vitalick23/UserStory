@@ -35,9 +35,12 @@ namespace UserStore
             builder.RegisterType<UserManager<User>>();
             builder.RegisterType<UserRepository>();
             builder.RegisterType<DAL.Identity.UserManager>().As<IUserManager>();
-            builder.RegisterType<UserFinder>().WithParameter("users")
+            builder.RegisterType<UserRepository>().As<IUserRepositoru>();
+            builder.RegisterType<UserFinder>().As<IUserFinder>();
+            builder.Register<IUserFinder>(x => new UserFinder(x.Resolve<ApplicationContext>().Users));
             builder.Register<IUserStore<User>>(x=>new UserStore<User>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<AuthenticationManager>().As<IAuthenticationManager>();
             builder.RegisterType<StoryService>().As<IStorySevice>();
             builder.RegisterType<StoryManager>().As<IStoryManager>();
             builder.RegisterType<CommentService>().As<ICommentService>();

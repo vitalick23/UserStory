@@ -7,14 +7,21 @@ using UserStore.BLL.Entities;
 
 namespace UserStore.BLL.Services
 {
-    public class UserService : IUserService
+    public class UserService :  IUserService
     {
         IUnitOfWork Database { get; set; }
-        private IUserManager userManager;
+        private readonly IUserFinder userFinder;
+        private readonly IUserRepositoru userRepositoru;
+        private readonly IAuthenticationManager authenticationManager;
         
-        public UserService(IUnitOfWork uow, IUserManager _userManager)
+        public UserService(IUnitOfWork uow,
+            IUserFinder userFinder,
+            IUserRepositoru userRepositoru,
+            IAuthenticationManager authenticationManager)
         {
-            userManager = _userManager;
+            this.authenticationManager = authenticationManager;
+            this.userFinder = userFinder;
+            this.userRepositoru = userRepositoru;
             Database = uow;
         }
 
@@ -22,12 +29,19 @@ namespace UserStore.BLL.Services
         {
             if (user != null)
             {
-                var userFound = await userManager.FindByEmailAsync(user.Email);
+                var userFound = userFinder.FindByEmail(user.Email);
                 if (userFound == null)
                 {
-                    userFound = new User{Email = user.Email,UserName = user.Email};
-                    await userManager.CreateAsync(userFound, password);
-                    await Database.SaveAsync();
+                    userFound = new User { Email = user.Email, UserName = user.Email };
+                    try
+                    {
+                        userRepositoru.Create(userFound, password);
+                        await Database.SaveAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        return IdentityResult.Failed(ex.Message);
+                    }
                     return IdentityResult.Success;
                 }
             }
@@ -39,12 +53,12 @@ namespace UserStore.BLL.Services
             
             ClaimsIdentity claim = null;
             if (userDto == null) return await Task.FromResult(claim);
-            User user = await userManager.FindAsync(userDto.Email, userDto.PasswordHash);
-            if(user != null)
-                claim = await userManager.CreateIdentityAsync(user,
-                                                             DefaultAuthenticationTypes.ApplicationCookie
-                                                             );
-            return claim;
+            User user = userFinder.Find(userDto.Email,userDto.PasswordHash);
+            if (user != null)
+              claim = await authenticationManager.CreateClaimIdentity(user,
+                    DefaultAuthenticationTypes.ApplicationCookie);
+               
+          return claim;
         }
 
       
@@ -56,8 +70,9 @@ namespace UserStore.BLL.Services
         public Task<User> FindById(string id)
         {
             if (String.IsNullOrWhiteSpace(id)) return Task.FromResult((User)null);
-            return userManager.FindAsync(id);
+            return Task.FromResult( userFinder.FindById(id));
         }
+
     }
 
     
