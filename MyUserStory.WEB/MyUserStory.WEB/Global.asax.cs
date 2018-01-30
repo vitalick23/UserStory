@@ -10,6 +10,7 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using MyUserStory.BLL.Entities;
 using MyUserStory.BLL.Interfaces;
 using MyUserStory.BLL.Interfaces.InterfaceFinder;
@@ -55,7 +56,8 @@ namespace MyUserStory.WEB
             builder.Register<IUserFinder>(x => new UserFinder(x.Resolve<ApplicationContext>().Users));
             builder.Register<IUserStore<User>>(x => new UserStore<User>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();
-            builder.RegisterType<AuthenticationManager>().As<IAuthenticationManager>();
+            builder.Register<Microsoft.Owin.Security.IAuthenticationManager>((x)=>HttpContext.Current.GetOwinContext().Authentication);
+            builder.RegisterType<AuthenticationManager>().As<BLL.Interfaces.IAuthenticationManager>();
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
           
