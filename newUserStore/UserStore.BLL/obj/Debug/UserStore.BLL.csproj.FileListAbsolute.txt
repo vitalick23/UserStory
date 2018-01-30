@@ -1,0 +1,134 @@
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\UserStore.BLL.dll.config
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\UserStore.BLL.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\UserStore.BLL.pdb
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\EntityFramework.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\UserStore.DAL.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\UserStore.DAL.pdb
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\EntityFramework.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\obj\Debug\UserStore.BLL.csprojResolveAssemblyReference.cache
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\obj\Debug\UserStore.BLL.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\BookStore\BookStore.BLL\obj\Debug\UserStore.BLL.pdb
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll.config
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.pdb
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\EntityFramework.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\UserStore.DAL.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\UserStore.DAL.pdb
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\EntityFramework.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csprojResolveAssemblyReference.cache
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.dll
+C:\Users\Eugene\Documents\Visual Studio 2015\Projects\CSharp\MVC5\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.pdb
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll.config
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.pdb
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.dll
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.DAL.dll
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.DAL.pdb
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.DAL.dll.config
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.xml
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csprojResolveAssemblyReference.cache
+D:\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csproj.CoreCompileInputs.cache
+D:\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.dll
+D:\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.pdb
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csprojResolveAssemblyReference.cache
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csproj.CoreCompileInputs.cache
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.pdb
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll.config
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.pdb
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Newtonsoft.Json.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Owin.dll
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+D:\Work\Work\UserStore\UserStore\UserStore.BLL\bin\Debug\Newtonsoft.Json.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll.config
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.pdb
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Newtonsoft.Json.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Owin.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\bin\Debug\Newtonsoft.Json.xml
+D:\учеба\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csprojResolveAssemblyReference.cache
+D:\учеба\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csproj.CoreCompileInputs.cache
+D:\учеба\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.dll
+D:\учеба\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.pdb
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll.config
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\UserStore.BLL.pdb
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Owin.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.Cookies.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.OAuth.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Newtonsoft.Json.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Owin.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\EntityFramework.SqlServer.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Core.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.EntityFramework.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.AspNet.Identity.Owin.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.Cookies.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Microsoft.Owin.Security.OAuth.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\bin\Debug\Newtonsoft.Json.xml
+D:\Work\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csprojResolveAssemblyReference.cache
+D:\Work\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.csproj.CoreCompileInputs.cache
+D:\Work\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.dll
+D:\Work\UserStory\UserStore\UserStore.BLL\obj\Debug\UserStore.BLL.pdb
