@@ -1,11 +1,25 @@
-﻿using System.Reflection;
+﻿using System.Net;
+using System.Reflection;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using Autofac;
+using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using MyUserStory.BLL.Entities;
+using MyUserStory.BLL.Interfaces;
+using MyUserStory.BLL.Interfaces.InterfaceFinder;
+using MyUserStory.BLL.Interfaces.InterfaceRepository;
+using MyUserStory.BLL.Interfaces.InterfaceService;
+using MyUserStory.BLL.Service;
+using MyUserStory.DAL.EF;
+using MyUserStory.DAL.Finder;
+using MyUserStory.DAL.Repositories;
+using AuthenticationManager = MyUserStory.DAL.AuthenticationManager;
 
 namespace MyUserStory.WEB
 {
@@ -28,9 +42,24 @@ namespace MyUserStory.WEB
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
 
             
-            // Set the dependency resolver to be Autofac.
+            
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+            builder.RegisterType<IdentityUnitOfWork>().As<IUnitOfWork>();
+            builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
+            builder.RegisterType<UserStore<User>>();
+            builder.RegisterType<UserManager<User>>();
+            builder.RegisterType<UserRepositoru>();
+            builder.RegisterType<UserRepositoru>().As<IUserRepositoru>();
+            builder.RegisterType<UserFinder>().As<IUserFinder>();
+            builder.Register<IUserFinder>(x => new UserFinder(x.Resolve<ApplicationContext>().Users));
+            builder.Register<IUserStore<User>>(x => new UserStore<User>(x.Resolve<ApplicationContext>()));
+            builder.RegisterType<UserService>().As<IUserService>();
+            builder.RegisterType<AuthenticationManager>().As<IAuthenticationManager>();
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+          
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
         }
     }
