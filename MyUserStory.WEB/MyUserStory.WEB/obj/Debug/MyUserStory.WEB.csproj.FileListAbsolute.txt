@@ -129,3 +129,10 @@ D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\obj\Debug\MyUserStory.WEB.cspr
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\obj\Debug\MyUserStory.WEB.csproj.CoreCompileInputs.cache
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\obj\Debug\MyUserStory.WEB.dll
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\obj\Debug\MyUserStory.WEB.pdb
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.Integration.WebApi.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.xml
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.Integration.WebApi.xml
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\NLog.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Purplelight.Framework.Autofac.Integration.WebApi.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\NLog.xml

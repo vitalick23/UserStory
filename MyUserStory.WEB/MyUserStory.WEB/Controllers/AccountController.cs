@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using MyUserStory.BLL.Interfaces.InterfaceService;
 using MyUserStory.WEB.Models;
 
 namespace MyUserStory.WEB.Controllers
@@ -17,9 +18,11 @@ namespace MyUserStory.WEB.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserService _userService;
 
-        public AccountController()
+        public AccountController(IUserService userService)
         {
+            userService = _userService;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)

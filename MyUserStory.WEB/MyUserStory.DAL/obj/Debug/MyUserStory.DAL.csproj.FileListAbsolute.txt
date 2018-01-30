@@ -29,3 +29,6 @@ D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.cspr
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.csproj.CoreCompileInputs.cache
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.dll
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.pdb
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.Migrations.Init.resources
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.csproj.GenerateResource.Cache
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.DAL\obj\Debug\MyUserStory.DAL.Migrations.addHometown.resources

@@ -79,6 +79,15 @@
     <Compile Include="Finder\CommentFinder.cs" />
     <Compile Include="Finder\StoryFinder.cs" />
     <Compile Include="Finder\UserFinder.cs" />
+    <Compile Include="Migrations\201801300954418_Init.cs" />
+    <Compile Include="Migrations\201801300954418_Init.Designer.cs">
+      <DependentUpon>201801300954418_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801301033326_add Hometown.cs" />
+    <Compile Include="Migrations\201801301033326_add Hometown.Designer.cs">
+      <DependentUpon>201801301033326_add Hometown.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\CommentRepositoru.cs" />
     <Compile Include="Repositories\IdentityUnitOfWork.cs" />
@@ -94,6 +103,14 @@
       <Project>{edb777d5-cfc4-4449-9647-9bd61aa9e864}</Project>
       <Name>MyUserStory.BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801300954418_Init.resx">
+      <DependentUpon>201801300954418_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801301033326_add Hometown.resx">
+      <DependentUpon>201801301033326_add Hometown.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
