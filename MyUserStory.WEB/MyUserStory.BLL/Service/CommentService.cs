@@ -43,7 +43,7 @@ namespace MyUserStory.BLL.Service
            var resylt = _commentFinder.GetCommentByIdStory(StoryId);
             foreach (var item in resylt)
             {
-                if (item.User == null) item.User = _userFinder.FindById(item.UserId);
+                if (item.User == null) item.User =  _userFinder.FindById(item.UserId);
             }
             return resylt;
         }

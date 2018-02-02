@@ -148,3 +148,6 @@ D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\MyUserStory.DAL.dll.config
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.Integration.Mvc.xml
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.Integration.Mvc.Owin.xml
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Autofac.Integration.Owin.xml
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\System.Web.Cors.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\System.Web.Http.Cors.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\System.Web.Http.Cors.xml

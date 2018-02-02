@@ -16,5 +16,24 @@ namespace MyUserStory.DAL.Repositories
         {
             _database.Add(item);
         }
+
+        public void Remove(Story item)
+        {
+            var story = _database.Find(item.Id);
+            _database.Remove(story);
+            
+        }
+
+        public void Update(Story item)
+        {
+            var story = _database.Find(item);
+            if (story != null)
+            {
+                story.Theme = item.Theme;
+                story.Stories = item.Stories;
+                story.TimePublicate = item.TimePublicate;
+                
+            }
+        }
     }
 }

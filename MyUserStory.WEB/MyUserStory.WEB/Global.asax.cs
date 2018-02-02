@@ -20,6 +20,7 @@ using MyUserStory.BLL.Service;
 using MyUserStory.DAL.EF;
 using MyUserStory.DAL.Finder;
 using MyUserStory.DAL.Repositories;
+using MyUserStory.WEB.Controllers;
 using AuthenticationManager = MyUserStory.DAL.AuthenticationManager;
 
 namespace MyUserStory.WEB
@@ -40,11 +41,10 @@ namespace MyUserStory.WEB
             var config = GlobalConfiguration.Configuration;
 
             // Register your Web API controllers.
-            builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
+            builder.RegisterApiControllers( Assembly.GetExecutingAssembly());
+            builder.RegisterType<StoryController>().InstancePerRequest();
 
-            
-            
-            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
             builder.RegisterType<IdentityUnitOfWork>().As<IUnitOfWork>();
             builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
@@ -53,10 +53,18 @@ namespace MyUserStory.WEB
             builder.RegisterType<UserRepositoru>();
             builder.RegisterType<UserRepositoru>().As<IUserRepositoru>();
             builder.RegisterType<UserFinder>().As<IUserFinder>();
+
+            builder.RegisterType<StoryService>().As<IStorySevice>();
+            builder.RegisterType<StoryRepositoru>().As<IStoryRepositoru>();
+            builder.RegisterType<StoryFinder>().As<IStoryFinder>();
+            builder.Register<IStoryFinder>(x => new StoryFinder(x.Resolve<ApplicationContext>().Stories));
+            builder.Register<IStoryRepositoru>(x => new StoryRepositoru(x.Resolve<ApplicationContext>().Stories));
+
+
             builder.Register<IUserFinder>(x => new UserFinder(x.Resolve<ApplicationContext>().Users));
             builder.Register<IUserStore<User>>(x => new UserStore<User>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();
-            builder.Register<Microsoft.Owin.Security.IAuthenticationManager>((x)=>HttpContext.Current.GetOwinContext().Authentication);
+            builder.Register((x)=>HttpContext.Current.GetOwinContext().Authentication);
             builder.RegisterType<AuthenticationManager>().As<BLL.Interfaces.IAuthenticationManager>();
             var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);

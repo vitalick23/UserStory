@@ -64,5 +64,18 @@ namespace MyUserStory.BLL.Service
             if (_userFinder.FindById(id) == null) return null;
             return _storyFinder.GetStoriesByUserId(id);
         }
+
+        public async void Remove(int id)
+        {
+            var item = GetStories(id);
+            _storyRepository.Remove(item);
+            await _unitOfWork.SaveAsync();
+        }
+
+        public async void Update(Story item)
+        {
+            _storyRepository.Update(item);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

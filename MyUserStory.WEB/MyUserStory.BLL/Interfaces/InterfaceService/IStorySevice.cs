@@ -14,5 +14,9 @@ namespace MyUserStory.BLL.Interfaces.InterfaceService
         List<Story> GetStoriesByUserName(string email);
 
         Story GetStories(int idStory);
+
+        void Remove(int id);
+
+        void Update(Story item);
     }
 }
