@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using MyUserStory.BLL.Entities;
 
 namespace MyUserStory.BLL.Interfaces.InterfaceFinder
@@ -7,7 +8,7 @@ namespace MyUserStory.BLL.Interfaces.InterfaceFinder
     {
         List<Story> GetStories();
 
-        Story GetStories(int idStory);
+        Task<Story> GetStory(int idStory);
 
         List<Story> GetStoriesByUserId(string id);
     }

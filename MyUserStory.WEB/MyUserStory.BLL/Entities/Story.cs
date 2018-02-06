@@ -15,5 +15,7 @@ namespace MyUserStory.BLL.Entities
         public string Stories { get; set; }
         public DateTime TimePublicate { get; set; }
         public virtual User User { get; set; }
-    }
+
+       
+        }
 }

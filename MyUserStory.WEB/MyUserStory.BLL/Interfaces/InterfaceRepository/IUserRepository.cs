@@ -2,7 +2,7 @@
 
 namespace MyUserStory.BLL.Interfaces.InterfaceRepository
 {
-    public interface IUserRepositoru : IRepositoru
+    public interface IUserRepository : IRepository
     {
         void Create(User user, string password);
 

@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using MyUserStory.BLL.Entities;
 using MyUserStory.BLL.Interfaces.InterfaceFinder;
 
@@ -19,9 +20,9 @@ namespace MyUserStory.DAL.Finder
             return _database.AsQueryable().ToList();
         }
 
-        public Story GetStories(int idStory)
+        public Task<Story> GetStory(int idStory)
         {
-           return _database.AsQueryable().First(x => x.Id == idStory);
+           return _database.AsQueryable().FirstOrDefaultAsync(x => x.Id == idStory);
         }
 
         public List<Story> GetStoriesByUserId(string id)

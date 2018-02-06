@@ -4,10 +4,10 @@ using MyUserStory.BLL.Interfaces.InterfaceRepository;
 
 namespace MyUserStory.DAL.Repositories
 {
-    public class CommentRepositoru : ICommentRepositoru
+    public class CommentRepository : ICommentRepository
     {
         private readonly DbSet<Comment> _dataBase;
-        public CommentRepositoru(DbSet<Comment> database)
+        public CommentRepository(DbSet<Comment> database)
         {
             _dataBase = database;
         }

@@ -12,17 +12,17 @@ namespace MyUserStory.BLL.Service
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly ICommentFinder _commentFinder;
-        private readonly ICommentRepositoru _commentRepositoru;
+        private readonly ICommentRepository _commentRepository;
         private readonly IUserFinder _userFinder;
 
         public CommentService(IUnitOfWork uow,
             ICommentFinder commentFinder,
             IUserFinder userFinder,
-            ICommentRepositoru commentRepositoru)
+            ICommentRepository commentRepository)
         {
             _userFinder = userFinder;
             _commentFinder = commentFinder;
-            _commentRepositoru = commentRepositoru;
+            _commentRepository = commentRepository;
             _unitOfWork = uow;
 
         }
@@ -32,7 +32,7 @@ namespace MyUserStory.BLL.Service
             if (item != null)
             {
                 item.TimePublicate = DateTime.Now;
-                _commentRepositoru.CreateComment(item);
+                _commentRepository.CreateComment(item);
                 await _unitOfWork.SaveAsync();
 
             } 
@@ -40,12 +40,8 @@ namespace MyUserStory.BLL.Service
 
         public async Task<List<Comment>> GetCommentByIdStory(int StoryId)
         {
-           var resylt = _commentFinder.GetCommentByIdStory(StoryId);
-            foreach (var item in resylt)
-            {
-                if (item.User == null) item.User =  _userFinder.FindById(item.UserId);
-            }
-            return resylt;
+           var resylt =  _commentFinder.GetCommentByIdStory(StoryId);
+           return resylt;
         }
     }
 }

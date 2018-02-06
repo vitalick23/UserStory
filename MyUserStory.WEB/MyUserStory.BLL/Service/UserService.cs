@@ -15,17 +15,17 @@ namespace MyUserStory.BLL.Service
     {
         IUnitOfWork Database { get; set; }
         private readonly IUserFinder _userFinder;
-        private readonly IUserRepositoru _userRepositoru;
+        private readonly IUserRepository _userRepository;
         private readonly Interfaces.IAuthenticationManager _authenticationManager;
         
         public UserService(IUnitOfWork uow,
             IUserFinder userFinder,
-            IUserRepositoru userRepositoru,
+            IUserRepository userRepository,
             Interfaces.IAuthenticationManager authenticationManager)
         {
             _authenticationManager = authenticationManager;
             _userFinder = userFinder;
-            _userRepositoru = userRepositoru;
+            _userRepository = userRepository;
             Database = uow;
         }
 
@@ -39,7 +39,7 @@ namespace MyUserStory.BLL.Service
                     userFound = new User { Email = user.Email, UserName = user.Email };
                     try
                     {
-                        _userRepositoru.Create(userFound, password);
+                        _userRepository.Create(userFound, password);
                         await Database.SaveAsync();
                     }
                     catch (Exception ex)

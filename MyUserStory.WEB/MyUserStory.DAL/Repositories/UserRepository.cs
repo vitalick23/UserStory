@@ -4,11 +4,11 @@ using MyUserStory.BLL.Interfaces.InterfaceRepository;
 
 namespace MyUserStory.DAL.Repositories
 {
-    public class UserRepositoru : IUserRepositoru
+    public class UserRepository : IUserRepository
     {
         private readonly UserManager<User> _userManager;
 
-        public UserRepositoru(UserManager<User> userManager)
+        public UserRepository(UserManager<User> userManager)
         {
             _userManager = userManager;
         }

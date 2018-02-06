@@ -43,6 +43,7 @@ namespace MyUserStory.WEB
             // Register your Web API controllers.
             builder.RegisterApiControllers( Assembly.GetExecutingAssembly());
             builder.RegisterType<StoryController>().InstancePerRequest();
+            builder.RegisterType<CommentController>().InstancePerRequest();
 
 
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
@@ -50,17 +51,22 @@ namespace MyUserStory.WEB
             builder.RegisterType<ApplicationContext>().InstancePerLifetimeScope();
             builder.RegisterType<UserStore<User>>();
             builder.RegisterType<UserManager<User>>();
-            builder.RegisterType<UserRepositoru>();
-            builder.RegisterType<UserRepositoru>().As<IUserRepositoru>();
+            builder.RegisterType<UserRepository>();
+            builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<UserFinder>().As<IUserFinder>();
 
+            builder.RegisterType<CommentService>().As<ICommentService>();
+            builder.RegisterType<CommentRepository>().As<ICommentRepository>();
+            builder.RegisterType<CommentFinder>().As<ICommentFinder>();
+            builder.Register<ICommentFinder>(x => new CommentFinder(x.Resolve<ApplicationContext>().Comments));
+            builder.Register<ICommentRepository>(x => new CommentRepository(x.Resolve<ApplicationContext>().Comments));
+
             builder.RegisterType<StoryService>().As<IStorySevice>();
-            builder.RegisterType<StoryRepositoru>().As<IStoryRepositoru>();
+            builder.RegisterType<StoryRepository>().As<IStoryRepository>();
             builder.RegisterType<StoryFinder>().As<IStoryFinder>();
             builder.Register<IStoryFinder>(x => new StoryFinder(x.Resolve<ApplicationContext>().Stories));
-            builder.Register<IStoryRepositoru>(x => new StoryRepositoru(x.Resolve<ApplicationContext>().Stories));
-
-
+            builder.Register<IStoryRepository>(x => new StoryRepository(x.Resolve<ApplicationContext>().Stories));
+            
             builder.Register<IUserFinder>(x => new UserFinder(x.Resolve<ApplicationContext>().Users));
             builder.Register<IUserStore<User>>(x => new UserStore<User>(x.Resolve<ApplicationContext>()));
             builder.RegisterType<UserService>().As<IUserService>();

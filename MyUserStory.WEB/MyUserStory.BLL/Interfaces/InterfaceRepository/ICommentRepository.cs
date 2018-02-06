@@ -2,7 +2,7 @@
 
 namespace MyUserStory.BLL.Interfaces.InterfaceRepository
 {
-    public interface ICommentRepositoru : IRepositoru
+    public interface ICommentRepository : IRepository
     {
         void CreateComment(Comment item);
     }

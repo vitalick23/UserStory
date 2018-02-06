@@ -7,16 +7,16 @@ namespace MyUserStory.BLL.Interfaces.InterfaceService
 {
     public interface IStorySevice 
     {
-        Task<IdentityResult> Create(Story item);
+        Task Create(Story item);
 
-        List<Story> GetStories();
+        Task<List<Story>> GetStories();
 
-        List<Story> GetStoriesByUserName(string email);
+        Task<List<Story>> GetStoriesByUserName(string email);
 
-        Story GetStories(int idStory);
+        Task<Story> GetStory(int idStory);
 
-        void Remove(int id);
+        Task Remove(Story item);
 
-        void Update(Story item);
+        Task Update(Story item);
     }
 }

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
-namespace MyUserStory.WEB.Models
+namespace MyUserStory.WEB.Models.Response
 {
-    public class StoryModel
+    public class StoryModelResponce
     {
         public int Id { get; set; }
       

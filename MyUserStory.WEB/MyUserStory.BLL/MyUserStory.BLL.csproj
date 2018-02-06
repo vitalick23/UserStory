@@ -83,10 +83,10 @@
     <Compile Include="Interfaces\InterfaceFinder\IFinder.cs" />
     <Compile Include="Interfaces\InterfaceFinder\IStoryFinder.cs" />
     <Compile Include="Interfaces\InterfaceFinder\IUserFinder.cs" />
-    <Compile Include="Interfaces\InterfaceRepository\ICommentRepositoru.cs" />
-    <Compile Include="Interfaces\InterfaceRepository\IRepositoru.cs" />
-    <Compile Include="Interfaces\InterfaceRepository\IStoryRepositoru.cs" />
-    <Compile Include="Interfaces\InterfaceRepository\IUserRepositoru.cs" />
+    <Compile Include="Interfaces\InterfaceRepository\ICommentRepository.cs" />
+    <Compile Include="Interfaces\InterfaceRepository\IRepository.cs" />
+    <Compile Include="Interfaces\InterfaceRepository\IStoryRepository.cs" />
+    <Compile Include="Interfaces\InterfaceRepository\IUserRepository.cs" />
     <Compile Include="Interfaces\InterfaceService\ICommentService.cs" />
     <Compile Include="Interfaces\InterfaceService\IStorySevice.cs" />
     <Compile Include="Interfaces\InterfaceService\IUnitOfWork.cs" />
