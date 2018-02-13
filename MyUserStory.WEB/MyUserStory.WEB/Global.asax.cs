@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System;
+using System.Net;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
@@ -10,6 +11,7 @@ using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.SignalR;
 using Microsoft.Owin.Security;
 using MyUserStory.BLL.Entities;
 using MyUserStory.BLL.Interfaces;
@@ -27,8 +29,19 @@ namespace MyUserStory.WEB
 {
     public class MvcApplication : HttpApplication
     {
+        protected void Application_BeginRequest(object sender, EventArgs e)
+        {
+            Context.Response.AppendHeader("Access-Control-Allow-Credentials", "true");
+            var referrer = Request.UrlReferrer;
+            if (Context.Request.Path.Contains("signalr/") && referrer != null)
+            {
+                Context.Response.AppendHeader("Access-Control-Allow-Origin", referrer.Scheme + "://" + referrer.Authority);
+            }
+        }
+
         protected void Application_Start()
         {
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -76,6 +89,7 @@ namespace MyUserStory.WEB
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
           
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
+            
 
         }
     }

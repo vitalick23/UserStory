@@ -19,7 +19,6 @@ namespace MyUserStory.WEB
         static Startup()
         {
             PublicClientId = "web";
-
             OAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
