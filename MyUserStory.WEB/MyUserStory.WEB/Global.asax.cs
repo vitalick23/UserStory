@@ -18,6 +18,8 @@ using MyUserStory.BLL.Interfaces;
 using MyUserStory.BLL.Interfaces.InterfaceFinder;
 using MyUserStory.BLL.Interfaces.InterfaceRepository;
 using MyUserStory.BLL.Interfaces.InterfaceService;
+using MyUserStory.BLL.Interfaces.Queue;
+using MyUserStory.BLL.Queue;
 using MyUserStory.BLL.Service;
 using MyUserStory.DAL.EF;
 using MyUserStory.DAL.Finder;
@@ -68,6 +70,7 @@ namespace MyUserStory.WEB
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<UserFinder>().As<IUserFinder>();
 
+            builder.RegisterType<QueueWrite>().As<IQueueWrite>();
             builder.RegisterType<CommentService>().As<ICommentService>();
             builder.RegisterType<CommentRepository>().As<ICommentRepository>();
             builder.RegisterType<CommentFinder>().As<ICommentFinder>();

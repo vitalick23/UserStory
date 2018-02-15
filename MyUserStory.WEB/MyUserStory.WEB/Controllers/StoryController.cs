@@ -3,16 +3,20 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using MyUserStory.BLL.Entities;
 using MyUserStory.BLL.Interfaces.InterfaceService;
+using MyUserStory.BLL.Interfaces.Queue;
 using MyUserStory.WEB.Models.Request;
 using MyUserStory.WEB.Models.Response;
+using Newtonsoft.Json;
 
 namespace MyUserStory.WEB.Controllers
 {
     public class StoryController : ApiController
     {
+        private readonly IQueueWrite _queueWrite;
         private readonly IStorySevice _storySevice;
-        public StoryController(IStorySevice storySevice)
+        public StoryController(IStorySevice storySevice, IQueueWrite queueWrite)
         {
+            _queueWrite = queueWrite;
             _storySevice = storySevice;
         }
         // GET api/<controller>
@@ -58,7 +62,9 @@ namespace MyUserStory.WEB.Controllers
             item.UserId = "13da69d5-b908-46a1-9212-728632a92a23";
 
             var story = (Story) item;
-            await _storySevice.Create(story);
+            // await _storySevice.Create(story);
+            var content = item.Serialize();
+            await _queueWrite.AddMessage(content);
             var result = new StoryModelResponce
             {
                 Id = story.Id,

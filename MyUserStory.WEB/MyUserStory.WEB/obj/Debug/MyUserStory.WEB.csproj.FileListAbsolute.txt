@@ -279,3 +279,10 @@ D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\System.Runtime.CompilerSer
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\System.Text.Encodings.Web.xml
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.Owin.Cors.dll
 D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.Owin.Cors.xml
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.WindowsAzure.Storage.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.WindowsAzure.Configuration.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.Azure.KeyVault.Core.dll
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.WindowsAzure.Storage.pdb
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.WindowsAzure.Storage.xml
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.WindowsAzure.Configuration.xml
+D:\Work\UserStory\MyUserStory.WEB\MyUserStory.WEB\bin\Microsoft.Azure.KeyVault.Core.xml

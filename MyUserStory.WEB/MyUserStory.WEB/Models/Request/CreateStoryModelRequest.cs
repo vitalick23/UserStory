@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using MyUserStory.BLL.Entities;
@@ -23,6 +24,34 @@ namespace MyUserStory.WEB.Models.Request
                 UserId = model.UserId
             };
             return story;
+        }
+        public byte[] Serialize()
+        {
+            using (MemoryStream m = new MemoryStream())
+            {
+                using (BinaryWriter writer = new BinaryWriter(m))
+                {
+                    writer.Write(UserId);
+                    writer.Write(Theme);
+                    writer.Write(Stories);
+                }
+                return m.ToArray();
+            }
+        }
+
+        public static CreateStoryModelRequest Desserialize(byte[] data)
+        {
+            CreateStoryModelRequest result = new CreateStoryModelRequest();
+            using (MemoryStream m = new MemoryStream(data))
+            {
+                using (BinaryReader reader = new BinaryReader(m))
+                {
+                    result.UserId = reader.ReadString();
+                    result.Theme = reader.ReadString();
+                    result.Stories = reader.ReadString();
+                }
+            }
+            return result;
         }
     }
 }
