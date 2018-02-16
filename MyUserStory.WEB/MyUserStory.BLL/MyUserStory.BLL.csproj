@@ -101,10 +101,11 @@
     <Compile Include="Interfaces\InterfaceService\IUnitOfWork.cs" />
     <Compile Include="Interfaces\InterfaceService\IUserService.cs" />
     <Compile Include="Interfaces\Queue\IQueue.cs" />
-    <Compile Include="Interfaces\Queue\IQueueRead.cs" />
-    <Compile Include="Interfaces\Queue\IQueueWrite.cs" />
+    <Compile Include="Interfaces\Queue\IQueueStoryRead.cs" />
+    <Compile Include="Interfaces\Queue\IQueueStoryWrite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queue\QueueWrite.cs" />
+    <Compile Include="Queue\QueueStoryRead.cs" />
+    <Compile Include="Queue\QueueStoryWrite.cs" />
     <Compile Include="Service\CommentService.cs" />
     <Compile Include="Service\StoryService.cs" />
     <Compile Include="Service\UserService.cs" />

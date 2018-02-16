@@ -70,7 +70,7 @@ namespace MyUserStory.WEB
             builder.RegisterType<UserRepository>().As<IUserRepository>();
             builder.RegisterType<UserFinder>().As<IUserFinder>();
 
-            builder.RegisterType<QueueWrite>().As<IQueueWrite>();
+            builder.RegisterType<QueueStoryWrite>().As<IQueueStoryWrite>();
             builder.RegisterType<CommentService>().As<ICommentService>();
             builder.RegisterType<CommentRepository>().As<ICommentRepository>();
             builder.RegisterType<CommentFinder>().As<ICommentFinder>();
@@ -88,8 +88,10 @@ namespace MyUserStory.WEB
             builder.RegisterType<UserService>().As<IUserService>();
             builder.Register((x)=>HttpContext.Current.GetOwinContext().Authentication);
             builder.RegisterType<AuthenticationManager>().As<BLL.Interfaces.IAuthenticationManager>();
-            var container = builder.Build();
+
+                       var container = builder.Build();
             config.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
           
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             
