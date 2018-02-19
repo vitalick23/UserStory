@@ -38,7 +38,7 @@ namespace MyUserStory.WEB.Controllers
 
         // POST: api/Comment
         public async Task<CommentModelResponce> Post([FromBody]CommentModelRequest value)
-        {
+        {         
             var comment = (Comment) value;
             await _commentService.CreateComment(comment);
             return ((CommentModelResponce) comment);

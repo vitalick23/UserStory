@@ -7,8 +7,6 @@ namespace Queue.Interface
     {
         Task CreateStory(Story story);
 
-        Task<Story> GetStoryById(string id);
-
         Task UpdateStory(string id, Story item);
 
         Task Delete(Story id);

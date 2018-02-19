@@ -7,7 +7,7 @@ namespace MyUserStory.BLL.Entities
     public class Comment
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         [ForeignKey("User")]
         public string UserId { get; set; }

@@ -27,11 +27,6 @@ namespace Queue
             await _storyService.Remove(story);
         }
 
-        public async Task<Story> GetStoryById(string id)
-        {
-            return await _storyService.GetStory(id);
-        }
-
         public async Task UpdateStory(string id, Story item)
         {
             var story = await _storyService.GetStory(id);

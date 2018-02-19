@@ -8,7 +8,7 @@ namespace MyUserStory.WEB.Models.Response
 {
     public class CommentModelResponce
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
     
         public string UserId { get; set; }
 
