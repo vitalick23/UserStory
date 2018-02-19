@@ -1,9 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 using MyUserStory.BLL.Entities;
 using MyUserStory.BLL.Interfaces.InterfaceService;
 using MyUserStory.BLL.Interfaces.Queue;
+using MyUserStory.BLL.ModelQueue;
 using MyUserStory.WEB.Models.Request;
 using MyUserStory.WEB.Models.Response;
 using Newtonsoft.Json;
@@ -40,7 +42,7 @@ namespace MyUserStory.WEB.Controllers
         }
 
         // GET api/<controller>/5
-        public async Task<StoryModelResponce> Get(int id)
+        public async Task<StoryModelResponce> Get(string id)
         {
             var item = await _storySevice.GetStory(id);
 
@@ -60,11 +62,11 @@ namespace MyUserStory.WEB.Controllers
         public async Task<StoryModelResponce> Post([FromBody]CreateStoryModelRequest item)
         {
             item.UserId = "13da69d5-b908-46a1-9212-728632a92a23";
-
-            var story = (Story) item;
-          //   await _storySevice.Create(story);
-             var content = item.Serialize();
+            item.Id = Guid.NewGuid().ToString(); 
+            var storyQueue = (StoryQueueModel)item;
+             var content = storyQueue.Serialize();
             await _queueWrite.AddMessage(content);
+            var story = (Story)item;
             var result = new StoryModelResponce
             {
                 Id = story.Id,
@@ -80,8 +82,9 @@ namespace MyUserStory.WEB.Controllers
         public async Task<StoryModelResponce> Put([FromBody]UpdateStoryModelRequest value)
         {
             var story = await _storySevice.GetStory(value.Id);
-            story = (Story) value;
-            await  _storySevice.Update(story);
+            var storyQueue = (StoryQueueModel)value;
+            var content = storyQueue.Serialize();
+            await _queueWrite.AddMessage(content);
             var result = new StoryModelResponce
             {
                 Id = story.Id,
@@ -94,10 +97,18 @@ namespace MyUserStory.WEB.Controllers
         }
 
         // DELETE api/<controller>/5
-        public async Task<int> Delete(int id)
+        public async Task<string> Delete(string id)
         {
-            var item = await _storySevice.GetStory(id);
-            await _storySevice.Remove(item);
+            var storyQueue = new StoryQueueModel
+            {
+                Method = "delete",
+                Id = id,
+                UserId = "",
+                Theme = "",
+                Stories = ""
+            };
+            var content = storyQueue.Serialize();
+            await _queueWrite.AddMessage(content);
             return id;
         }
     }

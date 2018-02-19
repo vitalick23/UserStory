@@ -4,11 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using MyUserStory.BLL.Entities;
+using MyUserStory.BLL.ModelQueue;
 
 namespace MyUserStory.WEB.Models.Request
 {
     public class CreateStoryModelRequest
     {
+        public string Id { get; set; }
         public string UserId { get; set; }
 
         public string Theme { get; set; }
@@ -25,33 +27,17 @@ namespace MyUserStory.WEB.Models.Request
             };
             return story;
         }
-        public byte[] Serialize()
+        public static explicit operator StoryQueueModel(CreateStoryModelRequest model)
         {
-            using (MemoryStream m = new MemoryStream())
+            var story = new StoryQueueModel
             {
-                using (BinaryWriter writer = new BinaryWriter(m))
-                {
-                    writer.Write(UserId);
-                    writer.Write(Theme);
-                    writer.Write(Stories);
-                }
-                return m.ToArray();
-            }
-        }
-
-        public static CreateStoryModelRequest Desserialize(byte[] data)
-        {
-            CreateStoryModelRequest result = new CreateStoryModelRequest();
-            using (MemoryStream m = new MemoryStream(data))
-            {
-                using (BinaryReader reader = new BinaryReader(m))
-                {
-                    result.UserId = reader.ReadString();
-                    result.Theme = reader.ReadString();
-                    result.Stories = reader.ReadString();
-                }
-            }
-            return result;
+                Method = "post",
+                Id = model.Id,
+                Stories = model.Stories,
+                Theme = model.Theme,
+                UserId = model.UserId
+            };
+            return story;
         }
     }
 }

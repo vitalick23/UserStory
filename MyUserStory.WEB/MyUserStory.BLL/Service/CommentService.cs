@@ -38,7 +38,7 @@ namespace MyUserStory.BLL.Service
             } 
         }
 
-        public async Task<List<Comment>> GetCommentByIdStory(int StoryId)
+        public async Task<List<Comment>> GetCommentByIdStory(string StoryId)
         {
            var resylt =  _commentFinder.GetCommentByIdStory(StoryId);
            return resylt;

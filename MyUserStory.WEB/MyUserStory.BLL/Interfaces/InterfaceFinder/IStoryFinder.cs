@@ -8,7 +8,7 @@ namespace MyUserStory.BLL.Interfaces.InterfaceFinder
     {
         List<Story> GetStories();
 
-        Task<Story> GetStory(int idStory);
+        Task<Story> GetStory(string idStory);
 
         List<Story> GetStoriesByUserId(string id);
     }

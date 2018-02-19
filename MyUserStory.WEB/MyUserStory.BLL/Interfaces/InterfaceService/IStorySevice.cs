@@ -13,7 +13,7 @@ namespace MyUserStory.BLL.Interfaces.InterfaceService
 
         Task<List<Story>> GetStoriesByUserName(string email);
 
-        Task<Story> GetStory(int idStory);
+        Task<Story> GetStory(string idStory);
 
         Task Remove(Story item);
 

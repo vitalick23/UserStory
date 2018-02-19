@@ -6,6 +6,6 @@ namespace MyUserStory.BLL.Interfaces.InterfaceFinder
 {
     public interface ICommentFinder : IFinder
     {
-        List<Comment> GetCommentByIdStory(int storyId);
+        List<Comment> GetCommentByIdStory(string storyId);
     }
 }

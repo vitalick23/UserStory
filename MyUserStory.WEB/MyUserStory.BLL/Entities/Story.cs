@@ -8,7 +8,7 @@ namespace MyUserStory.BLL.Entities
     public class Story
     {
         [Key]
-        public int Id { get; set; }
+        public string Id { get; set; }
         [ForeignKey("User")]
         public string UserId { get; set; }
         public string Theme { get; set; }

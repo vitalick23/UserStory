@@ -13,7 +13,7 @@ namespace MyUserStory.BLL.Entities
         public string UserId { get; set; }
 
         [ForeignKey("Story")]
-        public int StoriesId { get; set; }
+        public string StoriesId { get; set; }
 
         public string Text { get; set; }
 

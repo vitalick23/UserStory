@@ -8,6 +8,6 @@ namespace MyUserStory.BLL.Interfaces.InterfaceService
     {
         Task CreateComment(Comment item);
 
-        Task<List<Comment>> GetCommentByIdStory(int StoryId);
+        Task<List<Comment>> GetCommentByIdStory(string StoryId);
     }
 }

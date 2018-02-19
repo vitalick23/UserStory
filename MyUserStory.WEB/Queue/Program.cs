@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using MyUserStory.BLL.Entities;
+using MyUserStory.BLL.ModelQueue;
 using Queue.Interface;
 using Queue.Model;
 
@@ -19,16 +20,29 @@ namespace Queue
                     var message = queueRead.GetMessage();
                     if (message != null)
                     {
-                        var s = CreateStoryModelRequest.Desserialize(message.AsBytes);
+                        var storyQueue = StoryQueueModel.Desserialize(message.AsBytes);
                         var story = new Story
                         {
-                            Stories = s.Stories,
-                            UserId = s.UserId,
-                            Theme = s.Theme
+                            Id = storyQueue.Id,
+                            Stories = storyQueue.Stories,
+                            UserId = storyQueue.UserId,
+                            Theme = storyQueue.Theme
                         };
-
                         var app = scope.Resolve<IApplication>();
-                        app.CreateStory(story);
+                        switch (storyQueue.Method)
+                        {
+                            case "post":
+                                app.CreateStory(story);
+                                break;
+                            case "put":
+                               var item = app.GetStoryById(story.Id);
+                              //  item.
+                                break;
+                            case "delete":
+                                app.Delete(story);
+                                break;
+                            default: break;
+                        }
 
                         queueRead.DeleteMessage(message);
                     }

@@ -1,11 +1,12 @@
 ﻿using System;
 using MyUserStory.BLL.Entities;
+using MyUserStory.BLL.ModelQueue;
 
 namespace MyUserStory.WEB.Models.Request
 {
     public class UpdateStoryModelRequest
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string UserId { get; set; }
 
         public string Theme { get; set; }
@@ -20,7 +21,19 @@ namespace MyUserStory.WEB.Models.Request
                 Stories = model.Stories,
                 Theme = model.Theme,
                 UserId = model.UserId,
-                TimePublicate = DateTime.Now
+            };
+            return story;
+        }
+
+        public static explicit operator StoryQueueModel(UpdateStoryModelRequest model)
+        {
+            var story = new StoryQueueModel
+            {
+                Method = "put",
+                Id = model.Id,
+                Stories = model.Stories,
+                Theme = model.Theme,
+                UserId = model.UserId
             };
             return story;
         }

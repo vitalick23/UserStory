@@ -25,7 +25,7 @@ namespace MyUserStory.WEB.Controllers
 
         [HttpGet]
         // GET: api/Comment/5
-        public async Task<List<CommentModelResponce>> GetByStoryId(int id)
+        public async Task<List<CommentModelResponce>> GetByStoryId(string id)
         {
             var commentList = await _commentService.GetCommentByIdStory(id);
             var result = new List<CommentModelResponce>();

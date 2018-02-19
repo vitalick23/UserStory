@@ -4,7 +4,7 @@ namespace MyUserStory.WEB.Models.Response
 {
     public class StoryModelResponce
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
       
         public string UserId { get; set; }
 

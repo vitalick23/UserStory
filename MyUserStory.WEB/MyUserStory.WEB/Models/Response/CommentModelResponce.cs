@@ -12,7 +12,7 @@ namespace MyUserStory.WEB.Models.Response
     
         public string UserId { get; set; }
 
-        public int StoriesId { get; set; }
+        public string StoriesId { get; set; }
 
         public string Text { get; set; }
 

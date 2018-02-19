@@ -40,7 +40,7 @@ namespace MyUserStory.BLL.Service
             return  _storyFinder.GetStories();
         }
 
-        public Task<Story> GetStory(int idStory)
+        public Task<Story> GetStory(string idStory)
         {
             return  _storyFinder.GetStory(idStory);
         }

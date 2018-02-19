@@ -15,7 +15,7 @@ namespace MyUserStory.DAL.Finder
         {
             _database = db;
         }
-        public List<Comment> GetCommentByIdStory(int storyId)
+        public List<Comment> GetCommentByIdStory(string storyId)
         {
             return _database.AsQueryable().Where(x => x.StoriesId == storyId).ToList();
         }

@@ -13,12 +13,12 @@ namespace MyUserStory.DAL.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         UserId = c.String(maxLength: 128),
-                        StoriesId = c.Int(nullable: false),
+                        StoriesId = c.String(maxLength: 128),
                         Text = c.String(),
                         TimePublicate = c.DateTime(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.Stories", t => t.StoriesId, cascadeDelete: true)
+                .ForeignKey("dbo.Stories", t => t.StoriesId)
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId)
                 .Index(t => t.UserId)
                 .Index(t => t.StoriesId);
@@ -27,7 +27,7 @@ namespace MyUserStory.DAL.Migrations
                 "dbo.Stories",
                 c => new
                     {
-                        Id = c.Int(nullable: false, identity: true),
+                        Id = c.String(nullable: false, maxLength: 128),
                         UserId = c.String(maxLength: 128),
                         Theme = c.String(),
                         Stories = c.String(),
@@ -42,6 +42,7 @@ namespace MyUserStory.DAL.Migrations
                 c => new
                     {
                         Id = c.String(nullable: false, maxLength: 128),
+                        Hometown = c.String(),
                         Email = c.String(maxLength: 256),
                         EmailConfirmed = c.Boolean(nullable: false),
                         PasswordHash = c.String(),

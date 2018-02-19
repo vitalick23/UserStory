@@ -20,7 +20,7 @@ namespace MyUserStory.DAL.Finder
             return _database.AsQueryable().ToList();
         }
 
-        public Task<Story> GetStory(int idStory)
+        public Task<Story> GetStory(string idStory)
         {
            return _database.AsQueryable().FirstOrDefaultAsync(x => x.Id == idStory);
         }

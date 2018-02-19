@@ -79,13 +79,9 @@
     <Compile Include="Finder\CommentFinder.cs" />
     <Compile Include="Finder\StoryFinder.cs" />
     <Compile Include="Finder\UserFinder.cs" />
-    <Compile Include="Migrations\201801300954418_Init.cs" />
-    <Compile Include="Migrations\201801300954418_Init.Designer.cs">
-      <DependentUpon>201801300954418_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801301033326_add Hometown.cs" />
-    <Compile Include="Migrations\201801301033326_add Hometown.Designer.cs">
-      <DependentUpon>201801301033326_add Hometown.cs</DependentUpon>
+    <Compile Include="Migrations\201802191113340_Init.cs" />
+    <Compile Include="Migrations\201802191113340_Init.Designer.cs">
+      <DependentUpon>201802191113340_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,11 +101,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201801300954418_Init.resx">
-      <DependentUpon>201801300954418_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801301033326_add Hometown.resx">
-      <DependentUpon>201801301033326_add Hometown.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201802191113340_Init.resx">
+      <DependentUpon>201802191113340_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
