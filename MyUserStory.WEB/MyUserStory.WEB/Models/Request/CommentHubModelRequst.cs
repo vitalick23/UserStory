@@ -10,7 +10,7 @@ namespace MyUserStory.WEB.Models.Request
     public class CommentHubModelRequst
     {
 
-        public int StoryId { get; set; }
+        public string StoryId { get; set; }
         public string Mes { get; set; }
 
         public string Name { get; set; }

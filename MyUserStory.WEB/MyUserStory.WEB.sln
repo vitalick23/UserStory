@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUserStory.BLL", "MyUserSt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyUserStory.DAL", "MyUserStory.DAL\MyUserStory.DAL.csproj", "{8A4BA385-0044-4671-BE3A-22B559D9DEBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue", "Queue\Queue.csproj", "{D0C8DEC5-3296-41FF-8C7A-11363AE51AF8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueueStory", "Queue\QueueStory.csproj", "{D0C8DEC5-3296-41FF-8C7A-11363AE51AF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

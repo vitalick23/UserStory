@@ -29,7 +29,7 @@ namespace MyUserStory.DAL.Repositories
 
         public void Update(Story item)
         {
-                _stories.AddOrUpdate(item);
+            _stories.AddOrUpdate(item);
         }
     }
 }

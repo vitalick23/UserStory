@@ -16,14 +16,15 @@ namespace Queue
             _storyService = storyService;
         }
 
-        public async void CreateStory(Story story)
+        public async Task CreateStory(Story story)
         {
-            await _storyService.Create(story);
+             await _storyService.Create(story);
         }
 
-        public async void Delete(Story item)
+        public async Task Delete(Story item)
         {
-            await _storyService.Remove(item);
+            var story = await _storyService.GetStory(item.Id);
+            await _storyService.Remove(story);
         }
 
         public async Task<Story> GetStoryById(string id)
@@ -31,8 +32,10 @@ namespace Queue
             return await _storyService.GetStory(id);
         }
 
-        public async void UpdateStory(Story story)
+        public async Task UpdateStory(string id, Story item)
         {
+            var story = await _storyService.GetStory(id);
+            story.Stories = item.Stories;
             await _storyService.Update(story);
         }
     }

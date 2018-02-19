@@ -5,12 +5,12 @@ namespace Queue.Interface
 {
     public interface IApplication
     {
-        void CreateStory(Story story);
+        Task CreateStory(Story story);
 
         Task<Story> GetStoryById(string id);
 
-        void UpdateStory(Story story);
+        Task UpdateStory(string id, Story item);
 
-        void Delete(Story id);
+        Task Delete(Story id);
     }
 }

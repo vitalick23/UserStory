@@ -61,7 +61,7 @@ namespace MyUserStory.WEB.Controllers
         // POST api/<controller>
         public async Task<StoryModelResponce> Post([FromBody]CreateStoryModelRequest item)
         {
-            item.UserId = "13da69d5-b908-46a1-9212-728632a92a23";
+            item.UserId = "0cde9391-602d-45a2-8c3f-16444ece0df9";
             item.Id = Guid.NewGuid().ToString(); 
             var storyQueue = (StoryQueueModel)item;
              var content = storyQueue.Serialize();
@@ -88,7 +88,7 @@ namespace MyUserStory.WEB.Controllers
             var result = new StoryModelResponce
             {
                 Id = story.Id,
-                Stories = story.Stories,
+                Stories = value.Stories,
                 Theme = story.Theme,
                 TimePublicate = story.TimePublicate,
                 UserId = story.UserId

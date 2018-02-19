@@ -18,7 +18,7 @@ namespace MyUserStory.WEB.Models.Request
 
         public static explicit operator Comment(CommentModelRequest model)
         {
-            model.UserId = "13da69d5-b908-46a1-9212-728632a92a23";
+            model.UserId = "0cde9391-602d-45a2-8c3f-16444ece0df9";
 
 
             var comment = new Comment()

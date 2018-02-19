@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using Microsoft.AspNet.SignalR;
 using Microsoft.AspNet.SignalR.Hubs;
-using MyUserStory.BLL.Interfaces.InterfaceService;
 using MyUserStory.WEB.Models.Request;
-using MyUserStory.WEB.Models.Response;
 
 namespace MyUserStory.WEB.Hubs
 {

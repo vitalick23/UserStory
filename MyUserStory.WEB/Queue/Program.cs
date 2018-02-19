@@ -32,14 +32,15 @@ namespace Queue
                         switch (storyQueue.Method)
                         {
                             case "post":
-                                app.CreateStory(story);
+                                 app.CreateStory(story).Wait();
                                 break;
                             case "put":
-                               var item = app.GetStoryById(story.Id);
+
+                                app.UpdateStory(story.Id,story).Wait();
                               //  item.
                                 break;
                             case "delete":
-                                app.Delete(story);
+                                app.Delete(story).Wait();
                                 break;
                             default: break;
                         }
